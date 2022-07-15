@@ -7,6 +7,7 @@ public class PlayerInventory : MonoBehaviour
     private List<InventoryEntry> inventory = new List<InventoryEntry>();
     [SerializeField]
     private InventoryDisplay inventoryDisplay;
+    public InventoryEntry selectedDie;
 
     public void addItemToInventory(ItemInstance itemInstance) {
         
@@ -42,6 +43,8 @@ public class PlayerInventory : MonoBehaviour
         } else {
             inventory.Add(createEntry(itemInstance));
         }
+
+        selectedDie = inventory[0];
     }
 
     private InventoryEntry createEntry(ItemInstance itemInstance) {
@@ -56,5 +59,16 @@ public class PlayerInventory : MonoBehaviour
         foreach(InventoryEntry item in inventory) {
             Debug.Log("Item: " + item.MyItem.name + " Amount: " + item.CurrentAmount );
         }
+    }
+
+    public void removeDie() {
+        selectedDie.CurrentAmount -= 1;
+    }
+
+    public bool dieAvailable() {
+        if(selectedDie.CurrentAmount > 0) {
+            return true;
+        }
+        return false;
     }
 }

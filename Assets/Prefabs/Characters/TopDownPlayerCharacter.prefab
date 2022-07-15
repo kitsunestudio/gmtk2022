@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1014193296}
   - component: {fileID: 211278102}
   - component: {fileID: 234066777552620167}
+  - component: {fileID: 381198162}
   m_Layer: 0
   m_Name: TopDownPlayerCharacter
   m_TagString: Player
@@ -215,6 +216,7 @@ MonoBehaviour:
   psm: {fileID: 8014615072218923563}
   pac: {fileID: 8014615072218923562}
   pi: {fileID: 234066777552620167}
+  pa: {fileID: 381198162}
 --- !u!70 &211278102
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -243,3 +245,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7144e2a975cf5b54d9e7d46c7d07080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryDisplay: {fileID: 0}
+--- !u!114 &381198162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014615072218923567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd1e81e927a8beb488f870de184bf6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dieBullet: {fileID: 5646270972089580615, guid: bb2f660dce29a40459dfc7360681da4d, type: 3}

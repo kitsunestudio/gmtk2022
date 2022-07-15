@@ -14,4 +14,5 @@ public class Item : ScriptableObject
     public int maxStack;
     public Sprite uiImage;
     public Sprite gameImage;
+    public int sides;
 }

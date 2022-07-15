@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public PlayerStateMachine psm;
     public PlayerAnimationController pac;
     public PlayerInventory pi;
+    public PlayerAttack pa;
+    public Transform playerTrans;
 
     void Awake() {
         if(playerInstance != null && playerInstance != this) {
@@ -21,5 +23,6 @@ public class Player : MonoBehaviour
         pcm = GetComponent<PlayerCharacterMovement>();
         psm = GetComponent<PlayerStateMachine>();
         pac = GetComponent<PlayerAnimationController>();
+        playerTrans = transform;
     }
 }

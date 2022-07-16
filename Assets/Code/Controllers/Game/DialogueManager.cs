@@ -89,6 +89,7 @@ public class DialogueManager : MonoBehaviour
             if(buttonClicked == 0) {
                 Player.playerInstance.pcm.canDoStuff = true;
                 SystemsController.systemInstance.bgc.loadGame();
+                buttonClicked = 100;
             } else if(buttonClicked == 1){
                 SystemsController.systemInstance.bgc.openMenu();
             } else if(buttonClicked == 2) {

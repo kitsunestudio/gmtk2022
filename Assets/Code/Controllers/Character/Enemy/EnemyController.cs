@@ -28,5 +28,18 @@ public class EnemyController : MonoBehaviour
         health = maxHealth;
         gameObject.GetComponent<SpriteRenderer>().sprite = me.gameSprite;
         speed = me.speed;
+        string animation;
+        if(me.enemyName == "Spade") {
+            animation = "Spade_Walk";
+        } else if(me.enemyName == "Club") {
+            animation = "Club_Walk";
+        } else if(me.enemyName == "Queen") {
+            animation = "Queen_Walk";
+        } else if(me.enemyName == "King") {
+            animation = "King_Walk";
+        } else {
+            animation = "";
+        }
+        gameObject.GetComponent<Animator>().Play(animation, 0);
     }
 }

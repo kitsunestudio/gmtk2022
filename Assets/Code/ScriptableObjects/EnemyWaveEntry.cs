@@ -7,4 +7,5 @@ public class EnemyWaveEntry : ScriptableObject
 {
     public Enemy myEnemy;
     public int amount;
+    public int maxAmount;
 }

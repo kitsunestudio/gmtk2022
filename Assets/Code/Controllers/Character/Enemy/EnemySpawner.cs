@@ -22,6 +22,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void startWave() {
         currentWave = waves.Dequeue();
+        foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
+            entry.amount = entry.maxAmount;
+        }
         startSpawningWave();
     }
 
@@ -42,9 +45,25 @@ public class EnemySpawner : MonoBehaviour
                 tempEnemy.GetComponent<EnemyController>().loadEnemy(myEnemy);
                 StartCoroutine(spawnEnemies());
             } else {
+                Debug.Log("stop spawning");
                 isSpawning = false;
+                StopAllCoroutines();
+                StartCoroutine(nextWave());
             }
-        } 
+        }
+    }
+
+    private IEnumerator nextWave() {
+        Debug.Log("next wavee");
+        float timeToFade = 5f;
+        float timeElapsed = 0f;
+
+        while(timeElapsed < timeToFade) {    
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        startWave();
     }
 
     private Vector3 calculateSpawnPoint() {

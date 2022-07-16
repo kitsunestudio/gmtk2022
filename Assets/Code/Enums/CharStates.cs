@@ -9,5 +9,7 @@ public enum CharStates {
     Idle_Top,
     Idle_Down,
     Idle_Left,
-    Idle_Right
+    Idle_Right,
+    Death,
+    Dead
 }

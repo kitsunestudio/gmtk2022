@@ -69,10 +69,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 685915381
+  m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6317526053111568887, guid: ac0f21871fc6d524ca21f2b9516fa2c1, type: 3}
+  m_Sprite: {fileID: 7774549194197221326, guid: 69f578c9a3ead1f4aa214a6dc8b48335, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   pac: {fileID: 8014615072218923562}
   pi: {fileID: 234066777552620167}
   pa: {fileID: 381198162}
+  playerTrans: {fileID: 0}
 --- !u!70 &211278102
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -245,7 +246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7144e2a975cf5b54d9e7d46c7d07080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryDisplay: {fileID: 0}
+  dp: {fileID: 0}
+  d4Text: {fileID: 0}
+  d6Text: {fileID: 0}
+  d8Text: {fileID: 0}
+  d12Text: {fileID: 0}
+  d20Text: {fileID: 0}
 --- !u!114 &381198162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,3 +265,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dieBullet: {fileID: 5646270972089580615, guid: bb2f660dce29a40459dfc7360681da4d, type: 3}
+  particleLists:
+  - {fileID: 11400000, guid: 8f1989b77a702bc4eae04e82d4cdaa55, type: 2}
+  - {fileID: 11400000, guid: c5163bf23f5a96447bb0e504940ef364, type: 2}
+  - {fileID: 11400000, guid: c28c8a026d5e4724f83e0b0fb1e11eea, type: 2}
+  - {fileID: 11400000, guid: facb4667725095e4e8db8904ba656917, type: 2}
+  - {fileID: 11400000, guid: a19a1bf437a0d3c4a838ee30ad9d7260, type: 2}
+  healthBar: {fileID: 0}
+  maxHealth: 20

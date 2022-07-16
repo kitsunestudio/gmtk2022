@@ -16,8 +16,12 @@ public class PlayerAnimationController : MonoBehaviour
     }
 
     void FixedUpdate() {
+        currentState = psm.getState();
         if(player.sc.gsm.getState() != GameStates.GamePaused) {
             currentState = psm.getState();
+            ChangeAnimationState();
+        }
+        if(currentState == CharStates.Death || currentState == CharStates.Dead) {
             ChangeAnimationState();
         }
     }
@@ -25,6 +29,14 @@ public class PlayerAnimationController : MonoBehaviour
     void ChangeAnimationState()
     {
         animator.Play(currentState.ToString());
+        if(currentState == CharStates.Death) {
+            SystemsController.systemInstance.gsm.setStateGamePaused();
+            if(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Death") {
+                if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f) {
+                    player.psm.playerIsDead();
+                }
+            }
+        }
     }
 
     public CharStates getState() {

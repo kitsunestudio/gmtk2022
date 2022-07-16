@@ -20,20 +20,22 @@ public class EnemyController : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == animationString) {
-            transform.position = Vector3.Lerp(transform.position, Player.playerInstance.playerTrans.position, Time.deltaTime);
-            float distance = Vector3.Distance(transform.position, Player.playerInstance.playerTrans.position);
-            if(distance <= attackDistance) {
-                anim.Play(attackAnimationString, 0);
-            }
-        } else if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Card_Hit" || anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == attackAnimationString) {
-            if(Player.playerInstance.playerTrans.position.x < transform.position.x) {
-                gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            } else {
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            }
-            if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
-                anim.Play(animationString, 0);
+        if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
+            if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == animationString) {
+                transform.position = Vector3.Lerp(transform.position, Player.playerInstance.playerTrans.position, Time.deltaTime);
+                float distance = Vector3.Distance(transform.position, Player.playerInstance.playerTrans.position);
+                if(distance <= attackDistance) {
+                    anim.Play(attackAnimationString, 0);
+                }
+            } else if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Card_Hit" || anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == attackAnimationString) {
+                if(Player.playerInstance.playerTrans.position.x < transform.position.x) {
+                    gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                } else {
+                    gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                }
+                if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
+                    anim.Play(animationString, 0);
+                }
             }
         }
     }

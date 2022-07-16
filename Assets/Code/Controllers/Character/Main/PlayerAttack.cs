@@ -20,7 +20,11 @@ public class PlayerAttack : MonoBehaviour
     public void takeDamage(int damage) {
         health -= damage;
         healthBar.setCurrentValue(health);
-        SystemsController.systemInstance.cc.cameraShake();
+        if(health <= 0) {
+            Player.playerInstance.psm.playerDied();
+        } else {
+            SystemsController.systemInstance.cc.cameraShake();
+        }
     }
 
     public void rollDie(Item die, Vector2 target) {

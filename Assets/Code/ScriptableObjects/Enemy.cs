@@ -12,4 +12,5 @@ public class Enemy : ScriptableObject
     public Sprite gameSprite;
     public float speed;
     public float attackDistance;
+    public int damage;
 }

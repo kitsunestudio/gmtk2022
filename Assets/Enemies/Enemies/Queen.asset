@@ -18,3 +18,4 @@ MonoBehaviour:
   gameSprite: {fileID: -8516136072529316678, guid: d1d3810ce157b5549ad02540fab35584, type: 3}
   speed: 0
   attackDistance: 5
+  damage: 5

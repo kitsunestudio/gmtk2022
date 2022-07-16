@@ -11,19 +11,27 @@ public class EnemyController : MonoBehaviour
     private string attackAnimationString;
     private Animator anim;
     private float attackDistance;
+    private int damage;
+    private bool canDamage;
 
     void Start() {
         health = maxHealth;
+        canDamage = true;
     }
 
     private void FixedUpdate() {
         if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == animationString) {
             transform.position = Vector3.Lerp(transform.position, Player.playerInstance.playerTrans.position, Time.deltaTime);
             float distance = Vector3.Distance(transform.position, Player.playerInstance.playerTrans.position);
-            if(distance < attackDistance) {
+            if(distance <= attackDistance) {
                 anim.Play(attackAnimationString, 0);
             }
         } else if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Card_Hit" || anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == attackAnimationString) {
+            if(Player.playerInstance.playerTrans.position.x < transform.position.x) {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            } else {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
             if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
                 anim.Play(animationString, 0);
             }
@@ -45,6 +53,7 @@ public class EnemyController : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = me.gameSprite;
         speed = me.speed;
         attackDistance = me.attackDistance;
+        damage = me.damage;
         if(me.enemyName == "Spade") {
             animationString = "Spade_Walk";
             attackAnimationString = "Spade_Attack";
@@ -59,5 +68,41 @@ public class EnemyController : MonoBehaviour
             animationString = "";
         }
         anim.Play(animationString, 0);
+    }
+
+    public bool getIsAttacking() {
+        if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == attackAnimationString) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+      if(other.gameObject.CompareTag("Player")) {
+        anim.Play(attackAnimationString, 0);
+        if(canDamage) {
+            Player.playerInstance.pa.takeDamage(damage);
+            canDamage = false;
+            StopAllCoroutines();
+            StartCoroutine(waitTillAttack());
+        }
+      }
+    }
+
+    private IEnumerator waitTillAttack() {
+        float timeToFade = 0.166f;
+        float timeElapsed = 0f;
+
+        while(timeElapsed < timeToFade) {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        canDamage = true;
     }
 }

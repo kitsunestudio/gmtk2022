@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   enemyName: Club
-  maxHealth: 8
+  maxHealth: 1000
   gameSprite: {fileID: -5133688468608478480, guid: 10bea321a181cde41bbaf195419666ea, type: 3}
   speed: 1
-  attackDistance: 1.5
+  attackDistance: 1.2
+  damage: 0

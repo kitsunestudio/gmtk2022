@@ -8,6 +8,11 @@ public class PlayerInventory : MonoBehaviour
 
     public DicePanel dp;
     public InventoryEntry selectedDie;
+    public DefaultableText d4Text;
+    public DefaultableText d6Text;
+    public DefaultableText d8Text;
+    public DefaultableText d12Text;
+    public DefaultableText d20Text;
 
     public void addItemToInventory(ItemInstance itemInstance) {
 
@@ -24,33 +29,37 @@ public class PlayerInventory : MonoBehaviour
                     if(entry.CurrentAmount < entry.MyItem.maxStack) {
                         if(entry.CurrentAmount + itemInstance.quantity <= entry.MyItem.maxStack) {
                             entry.CurrentAmount += itemInstance.quantity;
-                            //entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
                             added = true;
+                            updateDieAmountText();
                             return;
                         } else if(entry.CurrentAmount + itemInstance.quantity > entry.MyItem.maxStack) {
                             amountLeft = entry.CurrentAmount + itemInstance.quantity - entry.MyItem.maxStack;
                             entry.CurrentAmount = entry.MyItem.maxStack;
-                            //entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
                             itemInstance.quantity = amountLeft;
                             addWithLeftover = createEntry(itemInstance);
                             added = true;
+                            updateDieAmountText();
                         }
                     }
                 } 
             }
             if(!added) {
                 inventory.Add(createEntry(itemInstance));
+                updateDieAmountText();
             }
             if(addWithLeftover != null) {
                 inventory.Add(addWithLeftover);
+                updateDieAmountText();
             }
         } else {
             inventory.Add(createEntry(itemInstance));
+            updateDieAmountText();
         }
 
         if(selectedDie == null) {
             selectDie();
         }
+        
     }
 
     private InventoryEntry createEntry(ItemInstance itemInstance) {
@@ -68,6 +77,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void removeDie() {
         selectedDie.CurrentAmount -= 1;
+        updateDieAmountText();
     }
 
     public bool dieAvailable() {
@@ -88,6 +98,22 @@ public class PlayerInventory : MonoBehaviour
                     dp.highlightActive(numberOfSides);
                     return;
                 }
+            }
+        }
+    }
+
+    private void updateDieAmountText() {
+        foreach(InventoryEntry entry in inventory) {
+            if(entry.MyItem.id == 1) {
+                d4Text.updateText(entry.CurrentAmount.ToString());
+            } else if(entry.MyItem.id == 2) {
+                d6Text.updateText(entry.CurrentAmount.ToString());
+            } else if(entry.MyItem.id == 3) {
+                d8Text.updateText(entry.CurrentAmount.ToString());
+            } else if(entry.MyItem.id == 4) {
+                d12Text.updateText(entry.CurrentAmount.ToString());
+            } else if(entry.MyItem.id == 5) {
+                d20Text.updateText(entry.CurrentAmount.ToString());
             }
         }
     }

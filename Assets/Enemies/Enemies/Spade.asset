@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   enemyName: Spade
-  maxHealth: 4
+  maxHealth: 1000
   gameSprite: {fileID: 9205810625686728117, guid: 2ec70adeaab5deb4fbd2a0fad1544271, type: 3}
   speed: 1
-  attackDistance: 1
+  attackDistance: 1.2
+  damage: 0

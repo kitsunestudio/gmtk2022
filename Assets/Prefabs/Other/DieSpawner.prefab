@@ -101,6 +101,9 @@ MonoBehaviour:
   possibleSpawns:
   - {fileID: 11400000, guid: 74fb00a7c45089849ac260eed0884735, type: 2}
   - {fileID: 11400000, guid: 49ac2a13477d0e84494c5067e29fa4ad, type: 2}
+  - {fileID: 11400000, guid: ab2db3eca1526504787076bd6552f501, type: 2}
+  - {fileID: 11400000, guid: 50489cfbbebd39e41893a45ef72d7da5, type: 2}
+  - {fileID: 11400000, guid: 634491b1e0a14254abe630e6b872e8ff, type: 2}
   displayDie: {fileID: 884492339886602223}
 --- !u!61 &884492339539931838
 BoxCollider2D:

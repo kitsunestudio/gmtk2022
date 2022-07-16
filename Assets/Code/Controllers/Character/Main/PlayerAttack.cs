@@ -38,10 +38,10 @@ public class PlayerAttack : MonoBehaviour
     private Vector3 calculateSpawnPosition(Vector2 target) {
         Transform playerTransform = Player.playerInstance.playerTrans;
         Vector3 spawnPosition;
-        if(target.y > playerTransform.position.y) {
-            spawnPosition = new Vector3(playerTransform.position.x, playerTransform.position.y + 0.5f, playerTransform.position.z);
+        if(target.x > playerTransform.position.x) {
+            spawnPosition = new Vector3(playerTransform.position.x + 0.3f, playerTransform.position.y, playerTransform.position.z);
         } else {
-            spawnPosition = new Vector3(playerTransform.position.x, playerTransform.position.y - 1f, playerTransform.position.z);        
+            spawnPosition = new Vector3(playerTransform.position.x - 0.3f, playerTransform.position.y, playerTransform.position.z);        
         }
         return spawnPosition;
     }

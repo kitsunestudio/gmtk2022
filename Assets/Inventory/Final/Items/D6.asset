@@ -17,8 +17,8 @@ MonoBehaviour:
   description: Six sided die. Can do 1-6 damage.
   type: 0
   stackable: 1
-  maxStack: 100
+  maxStack: 100000
   uiImage: {fileID: 21300000, guid: 4349b62582170434cbbd4b49af0c8acd, type: 3}
-  gameImage: {fileID: 21300000, guid: 4349b62582170434cbbd4b49af0c8acd, type: 3}
+  gameImage: {fileID: 21300000, guid: 9a1745cb312ddca4497973ed832d6e9b, type: 3}
   sides: 6
   particlePos: 1

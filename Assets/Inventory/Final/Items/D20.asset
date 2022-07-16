@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaa9eb9f004a344db6e96e3005ebd81, type: 3}
   m_Name: D20
   m_EditorClassIdentifier: 
-  id: 6
+  id: 5
   itemName: d20
   description: Twenty sided die. Can do 1-20 damage.
   type: 0
   stackable: 1
-  maxStack: 100
+  maxStack: 100000
   uiImage: {fileID: 0}
-  gameImage: {fileID: 0}
+  gameImage: {fileID: 21300000, guid: fcb50529f79df6a4fba57dcb11d4e3f0, type: 3}
   sides: 20
-  particlePos: 5
+  particlePos: 4

@@ -11,17 +11,33 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
 
     private bool isSpawning;
+    private bool startGame;
 
     void Start() {
         waves = new Queue<EnemyWave>();
         isSpawning = false;
+        startGame = false;
         foreach(EnemyWave wave in allWaves.waves) {
             waves.Enqueue(wave);
         }
     }
 
+    void Update() {
+        if(startGame) {
+            if(!isSpawning) {
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                if(enemies.Length == 0) {
+                    SystemsController.systemInstance.mc.crossFadeClip("shuffle");
+                    startGame = false;
+                    StartCoroutine(nextWave());
+                }
+            }
+        }
+    }
+
     public void startWave() {
         SystemsController.systemInstance.mc.crossFadeClip("craps");
+        startGame = true;
         currentWave = waves.Dequeue();
         foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
             entry.amount = entry.maxAmount;
@@ -80,7 +96,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         if(possibleIndexes.Count == 0) {
-            SystemsController.systemInstance.mc.crossFadeClip("shuffle");
             return null;
         }
 

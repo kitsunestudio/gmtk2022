@@ -9,16 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aaa9eb9f004a344db6e96e3005ebd81, type: 3}
-  m_Name: D10
+  m_Script: {fileID: 11500000, guid: 3fab7f8d79e8a434ea6abd38a170eb52, type: 3}
+  m_Name: d8-Spawn
   m_EditorClassIdentifier: 
-  id: 4
-  itemName: d10
-  description: Ten sided die. Can do 1-10 damage.
-  type: 0
-  stackable: 1
-  maxStack: 100
-  uiImage: {fileID: 0}
-  gameImage: {fileID: 0}
-  sides: 10
-  particlePos: 3
+  id: 3
+  myItem: {fileID: 11400000, guid: f0ead5333a28a0f429cd5499d79dbc91, type: 2}
+  quantity: 100

@@ -19,10 +19,7 @@ public class Player : MonoBehaviour
         } else {
             playerInstance = this;
         }
-
-        pcm = GetComponent<PlayerCharacterMovement>();
-        psm = GetComponent<PlayerStateMachine>();
-        pac = GetComponent<PlayerAnimationController>();
         playerTrans = transform;
+        DontDestroyOnLoad(this.gameObject);
     }
 }

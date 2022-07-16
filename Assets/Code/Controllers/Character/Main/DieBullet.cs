@@ -32,7 +32,7 @@ public class DieBullet : MonoBehaviour
     }
 
     private IEnumerator countDown() {
-        float timeToFade = 2f;
+        float timeToFade = 1.5f;
         float timeElapsed = 0f;
 
         while(timeElapsed < timeToFade) {
@@ -46,7 +46,8 @@ public class DieBullet : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy")) {
             ps.GetComponent<ParticleSystemRenderer>().material = myParticle;
             ps.Play();
-            Debug.Log("hit");
+            other.gameObject.GetComponent<EnemyController>().takeDamage(Damage);
+            Destroy(gameObject.GetComponent<BoxCollider2D>());
         }
     }
 }

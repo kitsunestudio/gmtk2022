@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5197193416975531045}
   - component: {fileID: 7187056199575446999}
   - component: {fileID: 6463866193550398910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DieBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1746586187
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0894b6eb16202b2498629509dde7807e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,13 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   ps: {fileID: 7187056199575446999}
-  particles:
-  - {fileID: 2100000, guid: 85bb500a7851fe7499e3e96875032b0e, type: 2}
-  - {fileID: 2100000, guid: e1fa74efbcddcd045980ce653af71104, type: 2}
-  - {fileID: 2100000, guid: 10df1ecdf3e8f1d45b5ea21999b67341, type: 2}
-  - {fileID: 2100000, guid: ef708b0e0891b33439788441c5892b94, type: 2}
-  - {fileID: 2100000, guid: 5ac8d9916c527094fa5a35e058bc7101, type: 2}
-  - {fileID: 2100000, guid: 8c3ad8e03d2b16b439d830814fe9d574, type: 2}
+  myParticle: {fileID: 0}
 --- !u!198 &7187056199575446999
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -163,7 +157,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5646270972089580615}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -238,7 +232,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -291,7 +285,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -869,7 +863,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.5
       mode: 0
       spread: 0
       speed:
@@ -1094,7 +1088,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1105,22 +1099,22 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
           value: 1
-          inSlope: 1
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.36580393
+          value: 0
+          inSlope: -2.3471208
+          outSlope: -2.3471208
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.5645548
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -4899,8 +4893,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 3795931
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

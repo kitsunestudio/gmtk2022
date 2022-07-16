@@ -13,6 +13,7 @@ public class PlayerCharacterMovement : MonoBehaviour
     public float moveSpeed = 5f;
     private Vector2 mousePos;
     public Vector2 MousePos { get; set;}
+    public bool canDoStuff { get; set; }
 
     void Awake() {
       topDownController = new TopDownPlayerController();
@@ -21,6 +22,7 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     void Start() {
       player = Player.playerInstance;
+      canDoStuff = false;
     }
 
     private void OnEnable() {
@@ -29,6 +31,16 @@ public class PlayerCharacterMovement : MonoBehaviour
       attack = topDownController.Character.Attack;
       attack.performed += onAttack;
       attack.Enable();
+      topDownController.Character.d4.performed += selectD4;
+      topDownController.Character.d4.Enable();
+      topDownController.Character.d6.performed += selectD6;
+      topDownController.Character.d6.Enable();
+      topDownController.Character.d8.performed += selectD8;
+      topDownController.Character.d8.Enable();
+      topDownController.Character.d12.performed += selectD12;
+      topDownController.Character.d12.Enable();
+      topDownController.Character.d20.performed += selectD20;
+      topDownController.Character.d20.Enable();
     }
 
     private void OnDisable() {
@@ -47,7 +59,29 @@ public class PlayerCharacterMovement : MonoBehaviour
     }
 
     private void onAttack(InputAction.CallbackContext obj) {{
-      MousePos = SystemsController.systemInstance.cc.mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-      Player.playerInstance.pa.rollDie(Player.playerInstance.pi.selectedDie.MyItem, MousePos);
+      if(canDoStuff) {
+        MousePos = SystemsController.systemInstance.cc.mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Player.playerInstance.pa.rollDie(Player.playerInstance.pi.selectedDie.MyItem, MousePos);
+      }
+    }}
+
+    private void selectD4(InputAction.CallbackContext obj) {{
+      Player.playerInstance.pi.selectDie(4);
+    }}
+
+    private void selectD6(InputAction.CallbackContext obj) {{
+      Player.playerInstance.pi.selectDie(6);
+    }}
+
+    private void selectD8(InputAction.CallbackContext obj) {{
+      Player.playerInstance.pi.selectDie(8);
+    }}
+
+    private void selectD12(InputAction.CallbackContext obj) {{
+      Player.playerInstance.pi.selectDie(12);
+    }}
+
+    private void selectD20(InputAction.CallbackContext obj) {{
+      Player.playerInstance.pi.selectDie(20);
     }}
 }

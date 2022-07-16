@@ -19,5 +19,6 @@ public class SystemsController : MonoBehaviour
         } else {
             systemInstance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
     }
 }

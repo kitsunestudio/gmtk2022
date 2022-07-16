@@ -18,7 +18,7 @@ public class ManualSlider : MonoBehaviour
         updateSliderValue();
     }
 
-    private void updateSliderValue() {
+    void updateSliderValue() {
         if(isSliding) {
             if(slider.value < currentSetValue && slider.value + lerpWindow >= currentSetValue) {
                 slider.value = currentSetValue;

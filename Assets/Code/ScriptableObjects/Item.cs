@@ -15,4 +15,5 @@ public class Item : ScriptableObject
     public Sprite uiImage;
     public Sprite gameImage;
     public int sides;
+    public int particlePos;
 }

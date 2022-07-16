@@ -15,6 +15,9 @@ public class SoundController : MonoBehaviour
     {
         audioPlayers = new List<AudioSource>();
         volume = 1f;
+    }
+
+    void Start() {
         soundVolumeText.updateText("10");
     }
 

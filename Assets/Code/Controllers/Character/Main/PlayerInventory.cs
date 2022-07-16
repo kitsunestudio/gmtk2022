@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     private List<InventoryEntry> inventory = new List<InventoryEntry>();
-    [SerializeField]
-    private InventoryDisplay inventoryDisplay;
+
+    public DicePanel dp;
     public InventoryEntry selectedDie;
 
     public void addItemToInventory(ItemInstance itemInstance) {
+
+        if(!dp.getActive()) {
+            dp.setActive();
+        }
         
         if(itemInstance.myItem.stackable) {
             bool added = false;
@@ -44,14 +48,15 @@ public class PlayerInventory : MonoBehaviour
             inventory.Add(createEntry(itemInstance));
         }
 
-        selectedDie = inventory[0];
+        if(selectedDie == null) {
+            selectDie();
+        }
     }
 
     private InventoryEntry createEntry(ItemInstance itemInstance) {
         InventoryEntry newEntry = new InventoryEntry();
         newEntry.MyItem = itemInstance.myItem;
         newEntry.CurrentAmount = itemInstance.quantity;
-        newEntry.MyInventoryEntry = inventoryDisplay.addItemToInventoryDisplay(itemInstance);
         return newEntry;
     }
 
@@ -70,5 +75,20 @@ public class PlayerInventory : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void selectDie(int numberOfSides = 0) {
+        if(numberOfSides == 0) {
+            selectedDie = inventory[0];
+            dp.highlightActive(selectedDie.MyItem.sides);
+        } else {
+            foreach(InventoryEntry entry in inventory) {
+                if(entry.MyItem.sides == numberOfSides) {
+                    selectedDie = entry;
+                    dp.highlightActive(numberOfSides);
+                    return;
+                }
+            }
+        }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
-    private SystemsController sc;
+    public SystemsController sc;
     private Queue<DialogueSentence> sentences;
     public GameObject dialogueBox;
     public GameObject responseBox;
@@ -20,13 +20,13 @@ public class DialogueManager : MonoBehaviour
     private TopDownPlayerController controller;
     private DialogueSentence currentSentence;
     private List<GameObject> responseButtons;
+    private int buttonClicked;
 
     void Awake()
     {
         sentences = new Queue<DialogueSentence>();
         anim = dialogueBox.GetComponent<Animator>();
         controller = new TopDownPlayerController();
-        sc = SystemsController.systemInstance;
         responseButtons = new List<GameObject>();
     }
 
@@ -86,6 +86,14 @@ public class DialogueManager : MonoBehaviour
     public void displayNextSentence() {
         if(sentences.Count == 0) {
             endDialogue();
+            if(buttonClicked == 0) {
+                Player.playerInstance.pcm.canDoStuff = true;
+                SystemsController.systemInstance.bgc.loadGame();
+            } else if(buttonClicked == 1){
+                SystemsController.systemInstance.bgc.openMenu();
+            } else if(buttonClicked == 2) {
+                SystemsController.systemInstance.bgc.quitGameButton();
+            }
             return;
         }
 
@@ -133,6 +141,8 @@ public class DialogueManager : MonoBehaviour
         clearButtons();
         StopAllCoroutines();
         StartCoroutine(writeSentence(currentSentence.responses[index]));
+
+        buttonClicked = index;
     }
 
     private void clearButtons() {

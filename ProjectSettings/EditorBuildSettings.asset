@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test/BoilerPlate.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Final/Main.unity
+    guid: a9297fff48a4d034295c70e860ad2288
+  - enabled: 1
+    path: Assets/Scenes/Final/Game.unity
+    guid: c51c3ccf1d23478408306537eba5bc7f
   m_configObjects: {}

@@ -21,3 +21,4 @@ MonoBehaviour:
   uiImage: {fileID: 21300000, guid: 4349b62582170434cbbd4b49af0c8acd, type: 3}
   gameImage: {fileID: 21300000, guid: 4349b62582170434cbbd4b49af0c8acd, type: 3}
   sides: 6
+  particlePos: 1

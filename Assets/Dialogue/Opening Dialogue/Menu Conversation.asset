@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b09bd658cd0f3a4c8834a2aa5e12d7b, type: 3}
   m_Name: Menu Conversation
   m_EditorClassIdentifier: 
-  sentences: []
-  characterName: 
+  sentences:
+  - {fileID: 11400000, guid: cbc57cd622758d842bd03004efef2e47, type: 2}
+  characterName: Grandpa Benzaio
   portrait: {fileID: 0}

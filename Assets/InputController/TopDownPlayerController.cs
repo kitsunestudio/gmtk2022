@@ -44,6 +44,51 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""d4"",
+                    ""type"": ""Button"",
+                    ""id"": ""2792c88e-1d87-461d-9ad2-7a3f8fe8cb51"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""d6"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e1fe289-4ead-4c93-a46c-0f62cd9a0085"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""d8"",
+                    ""type"": ""Button"",
+                    ""id"": ""001a7691-36d4-4067-bd84-6023ce450023"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""d12"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f88e490-2052-4a8c-8563-56b1a8172b2f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""d20"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7300206-4c8c-4e55-88c0-2ff0eb610e05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +199,61 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6513c5d1-baef-499f-be3b-47c6062fe95a"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""d4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21070740-9426-4510-9c7a-309e7a549e36"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""d6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a3f755b-3157-4158-93e9-042229ba199e"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""d8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7707c292-6d6e-44d2-a358-2ccd63207722"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""d12"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02a257b2-b66b-4323-a432-ac2f3cce3705"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""d20"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -274,6 +374,11 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_Attack = m_Character.FindAction("Attack", throwIfNotFound: true);
+        m_Character_d4 = m_Character.FindAction("d4", throwIfNotFound: true);
+        m_Character_d6 = m_Character.FindAction("d6", throwIfNotFound: true);
+        m_Character_d8 = m_Character.FindAction("d8", throwIfNotFound: true);
+        m_Character_d12 = m_Character.FindAction("d12", throwIfNotFound: true);
+        m_Character_d20 = m_Character.FindAction("d20", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_OpenCloseMenu = m_Menu.FindAction("OpenCloseMenu", throwIfNotFound: true);
@@ -342,12 +447,22 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
     private ICharacterActions m_CharacterActionsCallbackInterface;
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_Attack;
+    private readonly InputAction m_Character_d4;
+    private readonly InputAction m_Character_d6;
+    private readonly InputAction m_Character_d8;
+    private readonly InputAction m_Character_d12;
+    private readonly InputAction m_Character_d20;
     public struct CharacterActions
     {
         private @TopDownPlayerController m_Wrapper;
         public CharacterActions(@TopDownPlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Character_Movement;
         public InputAction @Attack => m_Wrapper.m_Character_Attack;
+        public InputAction @d4 => m_Wrapper.m_Character_d4;
+        public InputAction @d6 => m_Wrapper.m_Character_d6;
+        public InputAction @d8 => m_Wrapper.m_Character_d8;
+        public InputAction @d12 => m_Wrapper.m_Character_d12;
+        public InputAction @d20 => m_Wrapper.m_Character_d20;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,6 +478,21 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                 @Attack.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnAttack;
+                @d4.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD4;
+                @d4.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD4;
+                @d4.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD4;
+                @d6.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD6;
+                @d6.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD6;
+                @d6.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD6;
+                @d8.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD8;
+                @d8.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD8;
+                @d8.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD8;
+                @d12.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD12;
+                @d12.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD12;
+                @d12.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD12;
+                @d20.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD20;
+                @d20.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD20;
+                @d20.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnD20;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -373,6 +503,21 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @d4.started += instance.OnD4;
+                @d4.performed += instance.OnD4;
+                @d4.canceled += instance.OnD4;
+                @d6.started += instance.OnD6;
+                @d6.performed += instance.OnD6;
+                @d6.canceled += instance.OnD6;
+                @d8.started += instance.OnD8;
+                @d8.performed += instance.OnD8;
+                @d8.canceled += instance.OnD8;
+                @d12.started += instance.OnD12;
+                @d12.performed += instance.OnD12;
+                @d12.canceled += instance.OnD12;
+                @d20.started += instance.OnD20;
+                @d20.performed += instance.OnD20;
+                @d20.canceled += instance.OnD20;
             }
         }
     }
@@ -446,6 +591,11 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnD4(InputAction.CallbackContext context);
+        void OnD6(InputAction.CallbackContext context);
+        void OnD8(InputAction.CallbackContext context);
+        void OnD12(InputAction.CallbackContext context);
+        void OnD20(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

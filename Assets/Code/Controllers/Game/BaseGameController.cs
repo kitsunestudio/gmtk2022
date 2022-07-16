@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class BaseGameController : MonoBehaviour
 {
-    private SystemsController systems;
+    public SystemsController systems;
     private TopDownPlayerController controller;
     public GameObject inGameMenuPanel;
     private void Awake() {
-        systems = SystemsController.systemInstance;
         controller = new TopDownPlayerController();
         inGameMenuPanel.SetActive(true);
     }
@@ -19,7 +19,7 @@ public class BaseGameController : MonoBehaviour
     }
 
     private void OnEnable() {
-      controller.Menu.OpenCloseMenu.performed += OpenMenu;
+      controller.Menu.OpenCloseMenu.performed += OpenMenuAction;
       controller.Menu.OpenCloseMenu.Enable();
     }
 
@@ -27,7 +27,20 @@ public class BaseGameController : MonoBehaviour
         controller.Menu.OpenCloseMenu.Disable();
     }
 
-    private void OpenMenu(InputAction.CallbackContext obj) {{
+    private void OpenMenuAction(InputAction.CallbackContext obj) {{
+        openMenu();
+    }}
+
+    public void quitGameButton() {
+        Application.Quit();
+    }
+
+    public void loadGame() {
+        Player.playerInstance.playerTrans.position = Vector3.zero;
+        SceneManager.LoadScene(1);
+    }
+
+    public void openMenu() {
         if(systems.gsm.getState() == GameStates.InGame || systems.gsm.getState() == GameStates.GamePaused) {
             if(inGameMenuPanel.activeSelf) {
                 inGameMenuPanel.SetActive(false);
@@ -37,9 +50,5 @@ public class BaseGameController : MonoBehaviour
                 systems.gsm.setStateGamePaused();
             }
         }
-    }}
-
-    public void quitGameButton() {
-        Application.Quit();
     }
 }

@@ -5,7 +5,7 @@ using TMPro;
 
 public class DefaultableText : MonoBehaviour
 {
-    private TMP_Text myText;
+    [SerializeField] TMP_Text myText;
     private string myTextDefaultString;
 
     void Awake()

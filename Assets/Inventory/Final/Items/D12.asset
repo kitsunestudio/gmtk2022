@@ -21,3 +21,4 @@ MonoBehaviour:
   uiImage: {fileID: 0}
   gameImage: {fileID: 0}
   sides: 12
+  particlePos: 4

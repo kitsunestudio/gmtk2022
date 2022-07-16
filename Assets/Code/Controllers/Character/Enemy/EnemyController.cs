@@ -12,6 +12,10 @@ public class EnemyController : MonoBehaviour
         health = maxHealth;
     }
 
+    private void FixedUpdate() {
+        transform.position = Vector3.Lerp(transform.position, Player.playerInstance.playerTrans.position, Time.deltaTime * speed);
+    }
+
     public void takeDamage(int damage) {
         health -= damage;
         if(health <= 0) {

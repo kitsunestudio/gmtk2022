@@ -11,6 +11,7 @@ public class SystemsController : MonoBehaviour
     public SoundController sc;
     public DialogueManager dm;
     public CameraCont cc;
+    public EnemySpawner es;
     public Player player;
 
     void Awake() {

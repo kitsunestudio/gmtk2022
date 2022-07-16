@@ -38,6 +38,7 @@ public class BaseGameController : MonoBehaviour
     public void loadGame() {
         Player.playerInstance.playerTrans.position = Vector3.zero;
         SceneManager.LoadScene(1);
+        SystemsController.systemInstance.es.startWave();
     }
 
     public void openMenu() {

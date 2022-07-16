@@ -20,7 +20,7 @@ public class MusicController : MonoBehaviour
         audioPlayer1 = gameObject.AddComponent<AudioSource>();
         audioPlayer2 = gameObject.AddComponent<AudioSource>();
         player = audioPlayer1;
-        loopClip("menu");
+        loopClip("craps");
         musicVolumeText.updateText("10");
         isPlaying1 = true;
     }

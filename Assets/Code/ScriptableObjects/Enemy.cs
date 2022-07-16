@@ -11,4 +11,5 @@ public class Enemy : ScriptableObject
     public int maxHealth;
     public Sprite gameSprite;
     public float speed;
+    public float attackDistance;
 }

@@ -20,7 +20,7 @@ public class MusicController : MonoBehaviour
         audioPlayer1 = gameObject.AddComponent<AudioSource>();
         audioPlayer2 = gameObject.AddComponent<AudioSource>();
         player = audioPlayer1;
-        loopClip("craps");
+        loopClip("shuffle");
         musicVolumeText.updateText("10");
         isPlaying1 = true;
     }
@@ -115,7 +115,7 @@ public class MusicController : MonoBehaviour
 
             while(timeElapsed < timeToFade) {
                 audioPlayer2.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
-                audioPlayer1.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
+                audioPlayer1.volume = Mathf.Lerp(volume / 8, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -128,7 +128,7 @@ public class MusicController : MonoBehaviour
 
             while(timeElapsed < timeToFade) {
                 audioPlayer1.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
-                audioPlayer2.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
+                audioPlayer2.volume = Mathf.Lerp(volume / 8, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }

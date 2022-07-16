@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void startWave() {
+        SystemsController.systemInstance.mc.crossFadeClip("craps");
         currentWave = waves.Dequeue();
         foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
             entry.amount = entry.maxAmount;
@@ -45,7 +46,6 @@ public class EnemySpawner : MonoBehaviour
                 tempEnemy.GetComponent<EnemyController>().loadEnemy(myEnemy);
                 StartCoroutine(spawnEnemies());
             } else {
-                Debug.Log("stop spawning");
                 isSpawning = false;
                 StopAllCoroutines();
                 StartCoroutine(nextWave());
@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator nextWave() {
         Debug.Log("next wavee");
-        float timeToFade = 5f;
+        float timeToFade = 10f;
         float timeElapsed = 0f;
 
         while(timeElapsed < timeToFade) {    
@@ -80,6 +80,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         if(possibleIndexes.Count == 0) {
+            SystemsController.systemInstance.mc.crossFadeClip("shuffle");
             return null;
         }
 

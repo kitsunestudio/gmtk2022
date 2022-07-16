@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7982ec49392d5fd4086bf7f4e7a78bda, type: 3}
-  m_Name: Second
+  m_Name: Third
   m_EditorClassIdentifier: 
-  id: 2
-  waveNumber: 2
+  id: 3
+  waveNumber: 3
   waveEntries:
-  - {fileID: 11400000, guid: 42cf79ffd7b8ced40bd30eb23cfa61d0, type: 2}
-  - {fileID: 11400000, guid: bb82ef1c4895b3346b8cd3e2aaa25052, type: 2}
-  - {fileID: 11400000, guid: f17ca668da2a68545a5d12a3f08ec3a9, type: 2}
+  - {fileID: 11400000, guid: 08817cea07d61cf46964852ed89b74a9, type: 2}
+  - {fileID: 11400000, guid: 55a84574b7d61ec44bfafa89c00b4520, type: 2}
+  - {fileID: 11400000, guid: 72db39a03b20b8c42984c8014db6b11c, type: 2}
+  - {fileID: 11400000, guid: fcc3186679c0b4341845f7cb62ee4909, type: 2}

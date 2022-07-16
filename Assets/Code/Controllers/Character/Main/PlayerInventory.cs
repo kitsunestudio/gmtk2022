@@ -24,13 +24,13 @@ public class PlayerInventory : MonoBehaviour
                     if(entry.CurrentAmount < entry.MyItem.maxStack) {
                         if(entry.CurrentAmount + itemInstance.quantity <= entry.MyItem.maxStack) {
                             entry.CurrentAmount += itemInstance.quantity;
-                            entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
+                            //entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
                             added = true;
                             return;
                         } else if(entry.CurrentAmount + itemInstance.quantity > entry.MyItem.maxStack) {
                             amountLeft = entry.CurrentAmount + itemInstance.quantity - entry.MyItem.maxStack;
                             entry.CurrentAmount = entry.MyItem.maxStack;
-                            entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
+                            //entry.MyInventoryEntry.GetComponent<ItemPanel>().updateText(entry.CurrentAmount);
                             itemInstance.quantity = amountLeft;
                             addWithLeftover = createEntry(itemInstance);
                             added = true;

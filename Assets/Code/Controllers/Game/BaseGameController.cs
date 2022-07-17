@@ -36,7 +36,9 @@ public class BaseGameController : MonoBehaviour
     }}
 
     private void OpenCrafting(InputAction.CallbackContext obj) {{
-        openCraftingMenu();
+        if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
+            openCraftingMenu();
+        }
     }}
 
     public void quitGameButton() {
@@ -63,6 +65,6 @@ public class BaseGameController : MonoBehaviour
 
     private void openCraftingMenu() {
         Player.playerInstance.pa.canAttack = !Player.playerInstance.pa.canAttack;
-        craftingMenu.SetActive(!craftingMenu.activeSelf);
+        craftingMenu.GetComponent<Animator>().SetBool("showCraft", !Player.playerInstance.pa.canAttack);
     }
 }

@@ -13,10 +13,13 @@ public class EnemyController : MonoBehaviour
     private float attackDistance;
     private int damage;
     private bool canDamage;
+    public GameObject enemyBullet;
+    private bool canShoot;
 
     void Start() {
         health = maxHealth;
         canDamage = true;
+        canShoot = true;
     }
 
     private void FixedUpdate() {
@@ -25,7 +28,13 @@ public class EnemyController : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, Player.playerInstance.playerTrans.position, speed * Time.deltaTime);
                 float distance = Vector3.Distance(transform.position, Player.playerInstance.playerTrans.position);
                 if(distance <= attackDistance) {
-                    anim.Play(attackAnimationString, 0);
+                    if(animationString == "Club_Walk" || animationString == "Spade_Walk") {
+                        anim.Play(attackAnimationString, 0);
+                    } else if(animationString == "Queen_Walk") {
+                        if(canShoot) {
+                            queenAttack();
+                        }
+                    }
                 }
             } else if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Card_Hit" || anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == attackAnimationString) {
                 if(Player.playerInstance.playerTrans.position.x < transform.position.x) {
@@ -107,5 +116,25 @@ public class EnemyController : MonoBehaviour
         }
 
         canDamage = true;
+    }
+
+    private void queenAttack() {
+        GameObject temp = Instantiate(enemyBullet, transform.position, transform.rotation);
+        temp.GetComponent<EnemyBullet>().setTarget(800, damage);
+
+        canShoot = false;
+        StartCoroutine(reloadShot());
+    }
+
+    private IEnumerator reloadShot() {
+        float timeToFade = 1.5f;
+        float timeElapsed = 0f;
+
+        while(timeElapsed < timeToFade) {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        canShoot = true;
     }
 }

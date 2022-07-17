@@ -84,4 +84,10 @@ public class PlayerCharacterMovement : MonoBehaviour
     private void selectD20(InputAction.CallbackContext obj) {{
       Player.playerInstance.pi.selectDie(20);
     }}
+
+    private void OnTriggerEnter2D(Collider2D other) {
+      if(other.CompareTag("Enemy")) {
+        Player.playerInstance.pa.takeDamage(other.GetComponent<EnemyBullet>().damage);
+      }
+    }
 }

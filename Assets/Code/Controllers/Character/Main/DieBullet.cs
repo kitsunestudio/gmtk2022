@@ -44,10 +44,24 @@ public class DieBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Enemy")) {
+            SystemsController.systemInstance.sc.playEffect(randomCardHit());
             ps.GetComponent<ParticleSystemRenderer>().material = myParticle;
             ps.Play();
             other.gameObject.GetComponent<EnemyController>().takeDamage(Damage);
             Destroy(gameObject.GetComponent<BoxCollider2D>());
+        }
+    }
+
+    private string randomCardHit() {
+        int randInt = Random.Range(0, 3);
+        if(randInt == 0) {
+            return "card-hit-1";
+        } else if(randInt == 1) {
+            return "card-hit-2";
+        } else if(randInt == 2) {
+            return "card-hit-3";
+        } else {
+            return "";
         }
     }
 }

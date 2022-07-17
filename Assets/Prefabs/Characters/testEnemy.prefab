@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationString: 
+  enemyBullet: {fileID: 9150063356199791011, guid: 29393ca16106c4d4580def5439e716bc, type: 3}
 --- !u!95 &-2825624410660290892
 Animator:
   serializedVersion: 3

@@ -21,7 +21,7 @@ public class MusicController : MonoBehaviour
         audioPlayer2 = gameObject.AddComponent<AudioSource>();
         player = audioPlayer1;
         loopClip("shuffle");
-        musicVolumeText.updateText("10");
+        updateVolume(0.5f);
         isPlaying1 = true;
     }
 

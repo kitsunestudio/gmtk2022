@@ -16,4 +16,4 @@ MonoBehaviour:
   waveNumber: 1
   waveEntries:
   - {fileID: 11400000, guid: 013ccd861d593b34281b6b4016ce650f, type: 2}
-  - {fileID: 11400000, guid: 5ca9165cb2ad5cd49817f5e8ef418cd9, type: 2}
+  - {fileID: 11400000, guid: 1bad8a3729cec8f4284f9a3ec9dc2086, type: 2}

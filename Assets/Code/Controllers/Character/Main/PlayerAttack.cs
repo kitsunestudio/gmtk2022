@@ -39,6 +39,8 @@ public class PlayerAttack : MonoBehaviour
                 bulletScript.myParticle = particleLists[die.particlePos].materials[bulletScript.Damage -1];
                 
                 Player.playerInstance.pi.removeDie();
+
+                SystemsController.systemInstance.sc.playEffect(randomDieRoll());
             }
         }
     }
@@ -52,5 +54,16 @@ public class PlayerAttack : MonoBehaviour
             spawnPosition = new Vector3(playerTransform.position.x - 0.3f, playerTransform.position.y, playerTransform.position.z);        
         }
         return spawnPosition;
+    }
+
+    private string randomDieRoll() {
+        int randInt = Random.Range(0, 3);
+        if(randInt == 0) {
+            return "roll-1";
+        } else if(randInt == 1) {
+            return "roll-2";
+        } else {
+            return "roll-3";
+        }
     }
 }

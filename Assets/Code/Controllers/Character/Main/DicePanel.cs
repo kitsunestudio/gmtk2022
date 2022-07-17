@@ -15,12 +15,15 @@ public class DicePanel : MonoBehaviour
     public Color normal;
     public Color empty;
 
+    private bool isShown;
+
     public void setActive() {
-        gameObject.SetActive(true);
+        isShown = true;
+        gameObject.GetComponent<Animator>().SetBool("showDicePanel", true);
     }
 
     public bool getActive() {
-        return gameObject.activeSelf;
+        return isShown;
     }
 
     public void highlightActive(int die) {

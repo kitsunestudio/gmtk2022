@@ -20,6 +20,7 @@ public class DieSpawner : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             if(dieAvailable) {
+                SystemsController.systemInstance.sc.playEffect("grab-die");
                 Player.playerInstance.pi.addItemToInventory(nextSpawn);
                 dieAvailable = false;
                 displayDie.SetActive(false);

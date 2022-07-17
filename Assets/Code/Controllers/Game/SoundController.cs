@@ -14,11 +14,11 @@ public class SoundController : MonoBehaviour
     void Awake()
     {
         audioPlayers = new List<AudioSource>();
-        volume = 1f;
+        volume = 0.5f;
     }
 
     void Start() {
-        soundVolumeText.updateText("10");
+        soundVolumeText.updateText("5");
     }
 
     void FixedUpdate()
@@ -91,6 +91,6 @@ public class SoundController : MonoBehaviour
         float volumeText = newVolume * 10;
         int volumeTextInt = (int)volumeText;
         soundVolumeText.updateText(volumeTextInt.ToString());
-        playEffect("click");
+        playEffect("roll-1");
     }
 }

@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     private bool canDamage;
     public GameObject enemyBullet;
     private bool canShoot;
+    private Sprite bulletSprite;
 
     void Start() {
         health = maxHealth;
@@ -30,7 +31,7 @@ public class EnemyController : MonoBehaviour
                 if(distance <= attackDistance) {
                     if(animationString == "Club_Walk" || animationString == "Spade_Walk") {
                         anim.Play(attackAnimationString, 0);
-                    } else if(animationString == "Queen_Walk") {
+                    } else if(animationString == "Queen_Walk" || animationString == "King_Walk") {
                         if(canShoot) {
                             queenAttack();
                         }
@@ -66,6 +67,7 @@ public class EnemyController : MonoBehaviour
         speed = me.speed;
         attackDistance = me.attackDistance;
         damage = me.damage;
+        bulletSprite = me.bulletSprite;
         if(me.enemyName == "Spade") {
             animationString = "Spade_Walk";
             attackAnimationString = "Spade_Attack";
@@ -120,7 +122,7 @@ public class EnemyController : MonoBehaviour
 
     private void queenAttack() {
         GameObject temp = Instantiate(enemyBullet, transform.position, transform.rotation);
-        temp.GetComponent<EnemyBullet>().setTarget(800, damage);
+        temp.GetComponent<EnemyBullet>().setTarget(800, damage, bulletSprite);
 
         canShoot = false;
         StartCoroutine(reloadShot());

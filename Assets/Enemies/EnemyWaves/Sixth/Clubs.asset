@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7982ec49392d5fd4086bf7f4e7a78bda, type: 3}
-  m_Name: First
+  m_Script: {fileID: 11500000, guid: 725362e648efbba4091618f1f7279b46, type: 3}
+  m_Name: Clubs
   m_EditorClassIdentifier: 
-  id: 1
-  waveNumber: 1
-  waveEntries:
-  - {fileID: 11400000, guid: 013ccd861d593b34281b6b4016ce650f, type: 2}
-  - {fileID: 11400000, guid: 5ca9165cb2ad5cd49817f5e8ef418cd9, type: 2}
+  myEnemy: {fileID: 11400000, guid: 650e663d2ff83d94290c6cf585b68903, type: 2}
+  amount: 27
+  maxAmount: 30

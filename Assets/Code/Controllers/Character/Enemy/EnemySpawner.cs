@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public AllEnemyWaves allWaves;
     public GameObject[] spawnPoints;
     public GameObject enemyPrefab;
+    public DefaultableText waveText;
 
     private bool isSpawning;
     private bool startGame;
@@ -39,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
         SystemsController.systemInstance.mc.crossFadeClip("craps");
         startGame = true;
         currentWave = waves.Dequeue();
+        waveText.updateText(currentWave.waveNumber.ToString());
         foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
             entry.amount = entry.maxAmount;
         }
@@ -64,13 +66,12 @@ public class EnemySpawner : MonoBehaviour
             } else {
                 isSpawning = false;
                 StopAllCoroutines();
-                StartCoroutine(nextWave());
+                //StartCoroutine(nextWave());
             }
         }
     }
 
     private IEnumerator nextWave() {
-        Debug.Log("next wavee");
         float timeToFade = 10f;
         float timeElapsed = 0f;
 
@@ -96,6 +97,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         if(possibleIndexes.Count == 0) {
+            Debug.Log("has stuff");
             return null;
         }
 

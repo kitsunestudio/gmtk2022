@@ -15,7 +15,6 @@ MonoBehaviour:
   id: 3
   waveNumber: 3
   waveEntries:
-  - {fileID: 11400000, guid: 08817cea07d61cf46964852ed89b74a9, type: 2}
+  - {fileID: 11400000, guid: 6af152448f8a23140b2909b869a678b3, type: 2}
   - {fileID: 11400000, guid: 55a84574b7d61ec44bfafa89c00b4520, type: 2}
   - {fileID: 11400000, guid: 72db39a03b20b8c42984c8014db6b11c, type: 2}
-  - {fileID: 11400000, guid: fcc3186679c0b4341845f7cb62ee4909, type: 2}

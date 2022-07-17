@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725362e648efbba4091618f1f7279b46, type: 3}
   m_Name: Queens
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 0}
-  amount: 2
+  myEnemy: {fileID: 11400000, guid: 6694d26ab8a191d4dbb82167e378d689, type: 2}
+  amount: 0
   maxAmount: 2

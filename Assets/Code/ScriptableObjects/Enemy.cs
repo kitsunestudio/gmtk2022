@@ -13,4 +13,5 @@ public class Enemy : ScriptableObject
     public float speed;
     public float attackDistance;
     public int damage;
+    public Sprite bulletSprite;
 }

@@ -19,3 +19,4 @@ MonoBehaviour:
   speed: 3
   attackDistance: 6
   damage: 4
+  bulletSprite: {fileID: 5199364031020908554, guid: ac0f21871fc6d524ca21f2b9516fa2c1, type: 3}

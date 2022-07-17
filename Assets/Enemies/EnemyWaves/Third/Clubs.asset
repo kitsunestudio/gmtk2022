@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Clubs
   m_EditorClassIdentifier: 
   myEnemy: {fileID: 11400000, guid: 650e663d2ff83d94290c6cf585b68903, type: 2}
-  amount: 5
-  maxAmount: 5
+  amount: 0
+  maxAmount: 20

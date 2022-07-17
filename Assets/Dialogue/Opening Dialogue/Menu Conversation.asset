@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - {fileID: 11400000, guid: cbc57cd622758d842bd03004efef2e47, type: 2}
-  characterName: Grandpa Benzaio
+  - {fileID: 11400000, guid: a59a3497ea8ae5b4d9d469e2b37c29f8, type: 2}
+  characterName: Sissy Benazio
   portrait: {fileID: 0}

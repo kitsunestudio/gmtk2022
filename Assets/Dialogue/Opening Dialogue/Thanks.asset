@@ -10,16 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e004446abab994db59899013c8b09f, type: 3}
-  m_Name: Benazio Hiring
+  m_Name: Thanks
   m_EditorClassIdentifier: 
-  id: 0
-  type: 1
-  sentence: 'So you want to work at the Benasio Casino? '
-  questions:
-  - ' Yes'
-  - Depends
-  - No
-  responses:
-  - "You start tomorrow. 6:00am sharp. Don\u2019t be late. Pay starts at $14 an hour. "
-  - 'What can we arrange for you? '
-  - 'Then stop wasting my time. '
+  id: 1
+  type: 0
+  sentence: Antonio thank goodness you are here! It's terrible! The Ace of Spades
+    has taken over the casino!
+  questions: []
+  responses: []

@@ -307,6 +307,15 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenCrafting"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a1aefa7-ecc7-43fc-97f9-a30fdf1f8414"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -324,7 +333,7 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                 {
                     ""name"": """",
                     ""id"": ""23e04803-f89f-4c28-bd46-0896e3329dae"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -364,6 +373,17 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                     ""action"": ""SelectDialogue3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f0e058f-c4e1-4c42-bd85-2cdabc397fd5"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenCrafting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -386,6 +406,7 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
         m_Menu_SelectDialogue1 = m_Menu.FindAction("SelectDialogue1", throwIfNotFound: true);
         m_Menu_SelectDialogue2 = m_Menu.FindAction("SelectDialogue2", throwIfNotFound: true);
         m_Menu_SelectDialogue3 = m_Menu.FindAction("SelectDialogue3", throwIfNotFound: true);
+        m_Menu_OpenCrafting = m_Menu.FindAction("OpenCrafting", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -531,6 +552,7 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
     private readonly InputAction m_Menu_SelectDialogue1;
     private readonly InputAction m_Menu_SelectDialogue2;
     private readonly InputAction m_Menu_SelectDialogue3;
+    private readonly InputAction m_Menu_OpenCrafting;
     public struct MenuActions
     {
         private @TopDownPlayerController m_Wrapper;
@@ -540,6 +562,7 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
         public InputAction @SelectDialogue1 => m_Wrapper.m_Menu_SelectDialogue1;
         public InputAction @SelectDialogue2 => m_Wrapper.m_Menu_SelectDialogue2;
         public InputAction @SelectDialogue3 => m_Wrapper.m_Menu_SelectDialogue3;
+        public InputAction @OpenCrafting => m_Wrapper.m_Menu_OpenCrafting;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -564,6 +587,9 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                 @SelectDialogue3.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue3;
                 @SelectDialogue3.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue3;
                 @SelectDialogue3.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelectDialogue3;
+                @OpenCrafting.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCrafting;
+                @OpenCrafting.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCrafting;
+                @OpenCrafting.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnOpenCrafting;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -583,6 +609,9 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
                 @SelectDialogue3.started += instance.OnSelectDialogue3;
                 @SelectDialogue3.performed += instance.OnSelectDialogue3;
                 @SelectDialogue3.canceled += instance.OnSelectDialogue3;
+                @OpenCrafting.started += instance.OnOpenCrafting;
+                @OpenCrafting.performed += instance.OnOpenCrafting;
+                @OpenCrafting.canceled += instance.OnOpenCrafting;
             }
         }
     }
@@ -604,5 +633,6 @@ public partial class @TopDownPlayerController : IInputActionCollection2, IDispos
         void OnSelectDialogue1(InputAction.CallbackContext context);
         void OnSelectDialogue2(InputAction.CallbackContext context);
         void OnSelectDialogue3(InputAction.CallbackContext context);
+        void OnOpenCrafting(InputAction.CallbackContext context);
     }
 }

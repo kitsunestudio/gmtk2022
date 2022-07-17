@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 884492339539931811}
   - component: {fileID: 884492339539931809}
   - component: {fileID: 884492339539931838}
-  m_Layer: 7
+  - component: {fileID: 5090994553252936308}
+  m_Layer: 0
   m_Name: DieSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,10 +72,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1746586187
+  m_SortingLayerID: 398593249
   m_SortingLayer: -2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8137391368489233195, guid: ac0f21871fc6d524ca21f2b9516fa2c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85ff62bf3e2797d4995559446f8609a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,9 +102,6 @@ MonoBehaviour:
   possibleSpawns:
   - {fileID: 11400000, guid: 74fb00a7c45089849ac260eed0884735, type: 2}
   - {fileID: 11400000, guid: 49ac2a13477d0e84494c5067e29fa4ad, type: 2}
-  - {fileID: 11400000, guid: ab2db3eca1526504787076bd6552f501, type: 2}
-  - {fileID: 11400000, guid: 50489cfbbebd39e41893a45ef72d7da5, type: 2}
-  - {fileID: 11400000, guid: 634491b1e0a14254abe630e6b872e8ff, type: 2}
   displayDie: {fileID: 884492339886602223}
 --- !u!61 &884492339539931838
 BoxCollider2D:
@@ -122,15 +120,46 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 2}
   m_EdgeRadius: 0
+--- !u!60 &5090994553252936308
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884492339539931810}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1.5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.47957897, y: 0.3773222}
+      - {x: -0.13597012, y: -0.015893996}
+      - {x: -0.18858433, y: -0.74489486}
+      - {x: 0.16816378, y: -0.75510514}
+      - {x: 0.14079714, y: 0.011279881}
+      - {x: 0.49489498, y: 0.37221712}
 --- !u!1 &884492339886602223
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 884492339886602220}
   - component: {fileID: 884492339886602221}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: DieDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884492339886602223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 884492339539931808}

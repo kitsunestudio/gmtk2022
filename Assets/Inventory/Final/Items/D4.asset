@@ -19,6 +19,6 @@ MonoBehaviour:
   stackable: 1
   maxStack: 100000
   uiImage: {fileID: -7814655064023007982, guid: 192404c2b04ac1f41881627b2092525c, type: 3}
-  gameImage: {fileID: 21300000, guid: a243896f28f9cc64ca76cb3e0a7bf6d9, type: 3}
+  gameImage: {fileID: 21300000, guid: ed854d3595e98ef49b851a22e9e0177d, type: 3}
   sides: 4
   particlePos: 0

@@ -9,6 +9,7 @@ public class BaseGameController : MonoBehaviour
     public SystemsController systems;
     private TopDownPlayerController controller;
     public GameObject inGameMenuPanel;
+    public GameObject craftingMenu;
     private void Awake() {
         controller = new TopDownPlayerController();
         inGameMenuPanel.SetActive(true);
@@ -19,16 +20,23 @@ public class BaseGameController : MonoBehaviour
     }
 
     private void OnEnable() {
-      controller.Menu.OpenCloseMenu.performed += OpenMenuAction;
-      controller.Menu.OpenCloseMenu.Enable();
+        controller.Menu.OpenCloseMenu.performed += OpenMenuAction;
+        controller.Menu.OpenCloseMenu.Enable();
+        controller.Menu.OpenCrafting.performed += OpenCrafting;
+        controller.Menu.OpenCrafting.Enable();
     }
 
     private void OnDisable() {
         controller.Menu.OpenCloseMenu.Disable();
+        controller.Menu.OpenCrafting.Disable();
     }
 
     private void OpenMenuAction(InputAction.CallbackContext obj) {{
         openMenu();
+    }}
+
+    private void OpenCrafting(InputAction.CallbackContext obj) {{
+        openCraftingMenu();
     }}
 
     public void quitGameButton() {
@@ -51,5 +59,10 @@ public class BaseGameController : MonoBehaviour
                 systems.gsm.setStateGamePaused();
             }
         }
+    }
+
+    private void openCraftingMenu() {
+        Player.playerInstance.pa.canAttack = !Player.playerInstance.pa.canAttack;
+        craftingMenu.SetActive(!craftingMenu.activeSelf);
     }
 }

@@ -46,6 +46,9 @@ TagManager:
   - name: Enemy
     uniqueID: 1746586187
     locked: 0
+  - name: Pedastal
+    uniqueID: 398593249
+    locked: 0
   - name: Player
     uniqueID: 685915381
     locked: 0

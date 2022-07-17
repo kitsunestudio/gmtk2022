@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fab7f8d79e8a434ea6abd38a170eb52, type: 3}
-  m_Name: d4-Spawn
+  m_Name: d8-Crafted
   m_EditorClassIdentifier: 
-  id: 1
-  myItem: {fileID: 11400000, guid: 018437d352506d041953d93e25257da6, type: 2}
-  quantity: 10
+  id: 6
+  myItem: {fileID: 11400000, guid: f0ead5333a28a0f429cd5499d79dbc91, type: 2}
+  quantity: 1

@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate() {
         if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
             if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == animationString) {
-                transform.position = Vector3.Lerp(transform.position, Player.playerInstance.playerTrans.position, Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, Player.playerInstance.playerTrans.position, speed * Time.deltaTime);
                 float distance = Vector3.Distance(transform.position, Player.playerInstance.playerTrans.position);
                 if(distance <= attackDistance) {
                     anim.Play(attackAnimationString, 0);
@@ -35,6 +35,7 @@ public class EnemyController : MonoBehaviour
                 }
                 if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
                     anim.Play(animationString, 0);
+                    gameObject.GetComponent<SpriteRenderer>().flipX = false;
                 }
             }
         }

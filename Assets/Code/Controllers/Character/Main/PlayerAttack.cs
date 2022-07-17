@@ -13,6 +13,8 @@ public class PlayerAttack : MonoBehaviour
     private int health = 20;
     public int maxHealth = 20;
 
+    public bool canAttack;
+
     public int getHealth() {
         return health;
     }
@@ -28,14 +30,16 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void rollDie(Item die, Vector2 target) {
-        if(Player.playerInstance.pi.dieAvailable()) {
-            GameObject bullet = Instantiate(dieBullet, calculateSpawnPosition(target), transform.rotation, transform);
-            DieBullet bulletScript = bullet.GetComponent<DieBullet>();
-            bulletScript.Damage = Random.Range(1, die.sides + 1);
-            bulletScript.Target = target;
-            bulletScript.myParticle = particleLists[die.particlePos].materials[bulletScript.Damage -1];
-            
-            Player.playerInstance.pi.removeDie();
+        if(canAttack) {
+            if(Player.playerInstance.pi.dieAvailable()) {
+                GameObject bullet = Instantiate(dieBullet, calculateSpawnPosition(target), transform.rotation, transform);
+                DieBullet bulletScript = bullet.GetComponent<DieBullet>();
+                bulletScript.Damage = Random.Range(1, die.sides + 1);
+                bulletScript.Target = target;
+                bulletScript.myParticle = particleLists[die.particlePos].materials[bulletScript.Damage -1];
+                
+                Player.playerInstance.pi.removeDie();
+            }
         }
     }
 

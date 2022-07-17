@@ -285,6 +285,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenCrafting",
+                    "type": "Button",
+                    "id": "3a1aefa7-ecc7-43fc-97f9-a30fdf1f8414",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -302,7 +311,7 @@
                 {
                     "name": "",
                     "id": "23e04803-f89f-4c28-bd46-0896e3329dae",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -340,6 +349,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SelectDialogue3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f0e058f-c4e1-4c42-bd85-2cdabc397fd5",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenCrafting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

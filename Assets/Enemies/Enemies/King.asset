@@ -16,6 +16,6 @@ MonoBehaviour:
   enemyName: King
   maxHealth: 13
   gameSprite: {fileID: 3131018320317470165, guid: 4cc11cc1842d6de4d9ad86bcf9c3d3c4, type: 3}
-  speed: 0
+  speed: 5
   attackDistance: 6
   damage: 7

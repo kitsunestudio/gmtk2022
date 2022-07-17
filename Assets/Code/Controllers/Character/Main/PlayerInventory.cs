@@ -14,6 +14,8 @@ public class PlayerInventory : MonoBehaviour
     public DefaultableText d12Text;
     public DefaultableText d20Text;
 
+    public List<ItemInstance> craftables;
+
     public void addItemToInventory(ItemInstance itemInstance) {
 
         if(!dp.getActive()) {
@@ -115,6 +117,80 @@ public class PlayerInventory : MonoBehaviour
             } else if(entry.MyItem.id == 5) {
                 d20Text.updateText(entry.CurrentAmount.ToString());
             }
+        }
+    }
+
+    public void craftD8() {
+        ItemInstance crafted = null;
+        foreach(InventoryEntry entry in inventory) {
+            if(entry.MyItem.id == 1) {
+                if(entry.CurrentAmount >= 2) {
+                    entry.CurrentAmount -= 2;
+                    crafted = craftables[0];
+                }
+            }
+        }
+        if(crafted != null) {
+            addItemToInventory(crafted);
+        }
+    }
+
+    public void craftD12() {
+        ItemInstance crafted = null;
+        foreach(InventoryEntry entry in inventory) {
+            if(entry.MyItem.id == 2) {
+                if(entry.CurrentAmount >= 2) {
+                    entry.CurrentAmount -= 2;
+                    crafted = craftables[1];
+                }
+            }
+        }
+        if(crafted != null) {
+            addItemToInventory(crafted);
+        }
+    }
+
+    public void craftD20_1() {
+        ItemInstance crafted = null;
+        bool found8 = false;
+        InventoryEntry die8 = null;
+        bool found12 = false;
+        InventoryEntry die12 = null;
+        foreach(InventoryEntry entry in inventory) {
+            if(entry.MyItem.id == 4) {
+                if(entry.CurrentAmount >= 1) {
+                    found12 = true;
+                    die12 = entry;
+                }
+            } else if(entry.MyItem.id == 3) {
+                if(entry.CurrentAmount >= 1) {
+                    found8 = true;
+                    die8 = entry;
+                }
+            }
+        }
+        if(found8 && found12) {
+            crafted = craftables[2];
+            die8.CurrentAmount -= 1;
+            die12.CurrentAmount -= 1;
+        }
+        if(crafted != null) {
+            addItemToInventory(crafted);
+        }
+    }
+
+    public void craftD20_2() {
+        ItemInstance crafted = null;
+        foreach(InventoryEntry entry in inventory) {
+            if(entry.MyItem.id == 4) {
+                if(entry.CurrentAmount >= 2) {
+                    entry.CurrentAmount -= 2;
+                    crafted = craftables[2];
+                }
+            }
+        }
+        if(crafted != null) {
+            addItemToInventory(crafted);
         }
     }
 }

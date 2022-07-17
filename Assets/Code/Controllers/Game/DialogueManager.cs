@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     private DialogueSentence currentSentence;
     private List<GameObject> responseButtons;
     private int buttonClicked;
+    private bool canTalk = false;
 
     void Awake()
     {
@@ -42,7 +43,9 @@ public class DialogueManager : MonoBehaviour
     }
 
     private void displayNextSentenceOnAction(InputAction.CallbackContext obj) {{
-        displayNextSentence();
+        if(canTalk) {
+            displayNextSentence();
+        }
     }}
 
     private void selectResponse1(InputAction.CallbackContext obj) {{
@@ -71,6 +74,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void loadDialogue(Dialouge dialouge) {
+        canTalk = true;
         sc.gsm.setStateGamePaused();
         anim.SetBool("isShow", true);
         sentences.Clear();
@@ -114,6 +118,7 @@ public class DialogueManager : MonoBehaviour
     private void endDialogue() {
         anim.SetBool("isShow", false);
         sc.gsm.setStateInGame();
+        canTalk = false;
     }
 
     private IEnumerator writeSentence(string sentence) {

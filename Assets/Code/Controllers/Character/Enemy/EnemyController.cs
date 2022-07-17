@@ -79,7 +79,7 @@ public class EnemyController : MonoBehaviour
         } else if(me.enemyName == "King") {
             animationString = "King_Walk";
         } else {
-            animationString = "";
+            animationString = "Ace_Walk";
         }
         anim.Play(animationString, 0);
     }
@@ -100,10 +100,12 @@ public class EnemyController : MonoBehaviour
       if(other.gameObject.CompareTag("Player")) {
         anim.Play(attackAnimationString, 0);
         if(canDamage) {
-            Player.playerInstance.pa.takeDamage(damage);
-            canDamage = false;
-            StopAllCoroutines();
-            StartCoroutine(waitTillAttack());
+            if(Player.playerInstance.psm.getState() != CharStates.Death || Player.playerInstance.psm.getState() != CharStates.Dead) {
+                Player.playerInstance.pa.takeDamage(damage);
+                canDamage = false;
+                StopAllCoroutines();
+                StartCoroutine(waitTillAttack());
+            }
         }
       }
     }
@@ -122,7 +124,8 @@ public class EnemyController : MonoBehaviour
 
     private void queenAttack() {
         GameObject temp = Instantiate(enemyBullet, transform.position, transform.rotation);
-        temp.GetComponent<EnemyBullet>().setTarget(800, damage, bulletSprite);
+        bool isDia = animationString == "King_Walk" ? true : false;
+        temp.GetComponent<EnemyBullet>().setTarget(800, damage, bulletSprite, isDia);
 
         canShoot = false;
         StartCoroutine(reloadShot());

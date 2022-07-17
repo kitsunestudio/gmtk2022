@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   clipName: craps
-  clip: {fileID: 8300000, guid: 5e4f5a834f0a9184c9c8b741573b9807, type: 3}
+  clip: {fileID: 8300000, guid: 1d33fdbd977f8cf4e98a54b7f8ce14c3, type: 3}
   type: 0

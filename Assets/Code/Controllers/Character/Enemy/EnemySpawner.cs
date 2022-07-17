@@ -37,10 +37,14 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void startWave() {
-        SystemsController.systemInstance.mc.crossFadeClip("craps");
         startGame = true;
         currentWave = waves.Dequeue();
         waveText.updateText(currentWave.waveNumber.ToString());
+        if(currentWave.waveNumber == 7) {
+            SystemsController.systemInstance.mc.crossFadeClip("boss");
+        } else {
+            SystemsController.systemInstance.mc.crossFadeClip("craps");
+        }
         foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
             entry.amount = entry.maxAmount;
         }

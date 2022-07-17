@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEnemy: {fileID: 11400000, guid: 6694d26ab8a191d4dbb82167e378d689, type: 2}
   amount: 0
-  maxAmount: 8
+  maxAmount: 1

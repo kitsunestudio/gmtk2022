@@ -22,11 +22,14 @@ public class EnemyBullet : MonoBehaviour
         rb.AddForce(f * Time.deltaTime);
     }
 
-    public void setTarget(float newSpeed, int newDamage, Sprite bullet) {
+    public void setTarget(float newSpeed, int newDamage, Sprite bullet, bool isDia) {
         target = Player.playerInstance.playerTrans.position;
         speed = newSpeed;
         damage = newDamage;
         gameObject.GetComponent<SpriteRenderer>().sprite = bullet;
+        if(isDia) {
+            gameObject.GetComponent<CircleCollider2D>().radius = 0.5f;
+        }
         Destroy(gameObject, 1.5f);
     }
 }

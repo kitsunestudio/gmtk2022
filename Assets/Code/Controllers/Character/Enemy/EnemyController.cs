@@ -149,12 +149,10 @@ public class EnemyController : MonoBehaviour
       if(other.gameObject.CompareTag("Player")) {
         anim.Play(attackAnimationString, 0);
         if(canDamage) {
-            if(Player.playerInstance.psm.getState() != CharStates.Death || Player.playerInstance.psm.getState() != CharStates.Dead) {
-                Player.playerInstance.pa.takeDamage(damage);
-                canDamage = false;
-                StopAllCoroutines();
-                StartCoroutine(waitTillAttack());
-            }
+            Player.playerInstance.pa.takeDamage(damage);
+            canDamage = false;
+            StopAllCoroutines();
+            StartCoroutine(waitTillAttack());
         }
       }
     }

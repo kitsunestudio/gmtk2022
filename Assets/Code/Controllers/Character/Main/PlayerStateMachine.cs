@@ -16,7 +16,7 @@ public class PlayerStateMachine : MonoBehaviour
         state = CharStates.Idle_Down;
     }
 
-    void Update() {
+    void FixedUpdate() {
         movement = pcm.getMovement();
         updateState();
     }

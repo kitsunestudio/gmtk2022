@@ -25,6 +25,8 @@ public class PlayerAttack : MonoBehaviour
             healthBar.setCurrentValue(health);
             if(health <= 0) {
                 Player.playerInstance.psm.playerDied();
+                Player.playerInstance.playerTrans.position = new Vector3(-99, 0, 0);
+                Player.playerInstance.pi.dp.GetComponent<Animator>().SetBool("showDicePanel", false);
             } else {
                 SystemsController.systemInstance.cc.cameraShake();
             }

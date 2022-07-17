@@ -16,11 +16,19 @@ public class EnemyController : MonoBehaviour
     public GameObject enemyBullet;
     private bool canShoot;
     private Sprite bulletSprite;
+    public CapsuleCollider2D smallCol;
+    public BoxCollider2D bigCol;
+    private GameObject bossHealth;
+    public List<Sprite> bothBullets;
+    private bool canSpawn;
+    public GameObject enemyPrefab;
+    public List<Enemy> spawnAbles;
 
     void Start() {
         health = maxHealth;
         canDamage = true;
         canShoot = true;
+        canSpawn = false;
     }
 
     private void FixedUpdate() {
@@ -35,6 +43,15 @@ public class EnemyController : MonoBehaviour
                         if(canShoot) {
                             queenAttack();
                         }
+                    } else if(animationString == "Ace_Walk") {
+                        if(canShoot) {  
+                            aceAttack();
+                        }
+                        if(canSpawn) {
+                            spawnMinion();
+                        }
+                        //add stomper here?
+                        //SystemsController.systemInstance.cc.cameraShake();
                     }
                 }
             } else if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Card_Hit" || anim.GetCurrentAnimatorClipInfo(0)[0].clip.name == attackAnimationString) {
@@ -53,14 +70,25 @@ public class EnemyController : MonoBehaviour
 
     public void takeDamage(int damage) {
         health -= damage;
-        anim.Play("Card_Hit", 0);
-        if(health <= 0) {
-            Destroy(gameObject);
+        if(animationString != "Ace_Walk") {
+            anim.Play("Card_Hit", 0);
+            if(health <= 0) {
+                Destroy(gameObject);
+            }
+        } else {
+            bossHealth.GetComponent<ManualSlider>().setCurrentValue(health);
+            if(health <= 0) {
+                GetComponent<ParticleSystem>().Play();
+                Destroy(gameObject, 7f);
+                SystemsController.systemInstance.gsm.setStateGamePaused();
+                SystemsController.systemInstance.cc.updateTarget(transform);
+            }
         }
     }
 
     public void loadEnemy(Enemy me) {
         anim = gameObject.GetComponent<Animator>();
+        GetComponent<AudioSource>().Stop();
         maxHealth = me.maxHealth;
         health = maxHealth;
         gameObject.GetComponent<SpriteRenderer>().sprite = me.gameSprite;
@@ -71,15 +99,36 @@ public class EnemyController : MonoBehaviour
         if(me.enemyName == "Spade") {
             animationString = "Spade_Walk";
             attackAnimationString = "Spade_Attack";
+            smallCol.enabled = true;
+            bigCol.enabled = false;
         } else if(me.enemyName == "Club") {
             animationString = "Club_Walk";
             attackAnimationString = "Club_Attack";
+            smallCol.enabled = true;
+            bigCol.enabled = false;
         } else if(me.enemyName == "Queen") {
             animationString = "Queen_Walk";
+            smallCol.enabled = true;
+            bigCol.enabled = false;
         } else if(me.enemyName == "King") {
             animationString = "King_Walk";
+            smallCol.enabled = true;
+            bigCol.enabled = false;
         } else {
             animationString = "Ace_Walk";
+            smallCol.enabled = false;
+            bigCol.enabled = true;
+            bossHealth = GameObject.FindGameObjectWithTag("BossHealth");
+            bossHealth.SetActive(true);
+            bossHealth.GetComponent<Animator>().SetBool("showHealth", true);
+            bossHealth.GetComponent<Animator>().SetBool("stayDisplay", true);
+            bossHealth.GetComponent<ManualSlider>().setMaxValue(maxHealth);
+            bossHealth.GetComponent<ManualSlider>().setCurrentValue(health);
+            bossHealth.GetComponent<ManualSlider>().setMinValue(0);
+            GetComponent<Rigidbody2D>().mass = 200;
+            GetComponent<AudioSource>().Play();
+            StartCoroutine(spawnTimer());
+            SystemsController.systemInstance.cc.cameraShake(1f);
         }
         anim.Play(animationString, 0);
     }
@@ -131,8 +180,19 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(reloadShot());
     }
 
+    private void aceAttack() {
+        GameObject temp = Instantiate(enemyBullet, transform.position, transform.rotation);
+        int randomIndex = Random.Range(0,2);
+        Sprite tempBullet = bothBullets[randomIndex];
+        bool isDia = randomIndex == 1 ? true : false;
+        temp.GetComponent<EnemyBullet>().setTarget(800, damage, tempBullet, isDia);
+
+        canShoot = false;
+        StartCoroutine(reloadShot());
+    }
+
     private IEnumerator reloadShot() {
-        float timeToFade = 1.5f;
+        float timeToFade = animationString == "Ace_Walk" ? 0.6f : 1.5f;
         float timeElapsed = 0f;
 
         while(timeElapsed < timeToFade) {
@@ -141,5 +201,25 @@ public class EnemyController : MonoBehaviour
         }
 
         canShoot = true;
+    }
+
+    private IEnumerator spawnTimer() {
+        float timeToFade = 2f;
+        float timeElapsed = 0f;
+
+        while(timeElapsed < timeToFade) {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        canSpawn = true;
+    }
+
+    private void spawnMinion() {
+        GameObject minion = Instantiate(enemyPrefab, transform.position, transform.rotation);
+        minion.GetComponent<EnemyController>().loadEnemy(spawnAbles[Random.Range(0,2)]);
+        canSpawn = false;
+
+        StartCoroutine(spawnTimer());
     }
 }

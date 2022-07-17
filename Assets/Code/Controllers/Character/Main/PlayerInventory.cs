@@ -132,6 +132,7 @@ public class PlayerInventory : MonoBehaviour
         }
         if(crafted != null) {
             addItemToInventory(crafted);
+            SystemsController.systemInstance.sc.playEffect("grab-die");
         }
     }
 
@@ -147,6 +148,7 @@ public class PlayerInventory : MonoBehaviour
         }
         if(crafted != null) {
             addItemToInventory(crafted);
+            SystemsController.systemInstance.sc.playEffect("grab-die");
         }
     }
 
@@ -176,6 +178,7 @@ public class PlayerInventory : MonoBehaviour
         }
         if(crafted != null) {
             addItemToInventory(crafted);
+            SystemsController.systemInstance.sc.playEffect("grab-die");
         }
     }
 
@@ -191,6 +194,7 @@ public class PlayerInventory : MonoBehaviour
         }
         if(crafted != null) {
             addItemToInventory(crafted);
+            SystemsController.systemInstance.sc.playEffect("grab-die");
         }
     }
 }

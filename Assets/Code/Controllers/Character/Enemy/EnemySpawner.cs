@@ -46,7 +46,8 @@ public class EnemySpawner : MonoBehaviour
             SystemsController.systemInstance.mc.crossFadeClip("craps");
         }
         foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
-            entry.amount = entry.maxAmount;
+            //entry.amount = entry.maxAmount;
+            entry.amount = 1;
         }
         startSpawningWave();
     }

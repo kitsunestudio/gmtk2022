@@ -11,6 +11,7 @@ public class CameraCont : MonoBehaviour
     private Vector2 direction;
     public float cameraPad = 1000;
     private float speed = 5;
+    public bool startFollowing;
 
     void Start() {
         direction = new Vector2();
@@ -19,8 +20,13 @@ public class CameraCont : MonoBehaviour
 
     void FixedUpdate() {
         //updateDirection();
-        Vector3 followTargetFrozenZ = new Vector3(followTarget.position.x, followTarget.position.y, -10);
-        mainCamera.gameObject.transform.position = Vector3.MoveTowards(followTargetFrozenZ, mainCamera.gameObject.transform.position, Time.deltaTime * speed);
+        if(startFollowing) {
+            if(followTarget == null) {
+                followTarget = Player.playerInstance.playerTrans;
+            }
+            Vector3 followTargetFrozenZ = new Vector3(followTarget.position.x, followTarget.position.y, -10);
+            mainCamera.gameObject.transform.position = Vector3.MoveTowards(followTargetFrozenZ, mainCamera.gameObject.transform.position, Time.deltaTime * speed);
+        }
     }
 
     void updateDirection() {
@@ -38,5 +44,9 @@ public class CameraCont : MonoBehaviour
 
     public void cameraShake(float intensity = 0.1f) {
         cameraShaker.InduceStress(intensity);
+    }
+
+    public void updateTarget(Transform newTarget) {
+        followTarget = newTarget;
     }
 }

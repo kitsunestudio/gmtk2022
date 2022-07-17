@@ -20,12 +20,14 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void takeDamage(int damage) {
-        health -= damage;
-        healthBar.setCurrentValue(health);
-        if(health <= 0) {
-            Player.playerInstance.psm.playerDied();
-        } else {
-            SystemsController.systemInstance.cc.cameraShake();
+        if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
+            health -= damage;
+            healthBar.setCurrentValue(health);
+            if(health <= 0) {
+                Player.playerInstance.psm.playerDied();
+            } else {
+                SystemsController.systemInstance.cc.cameraShake();
+            }
         }
     }
 

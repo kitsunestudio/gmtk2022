@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AllWaves
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: 4941967c03cf5ec4297c0cc8085830f6, type: 2}
+  - {fileID: 11400000, guid: edf94bcff25d6334d992592050b79b15, type: 2}
   - {fileID: 11400000, guid: 4736ad33718662d41885a69e010828af, type: 2}
   - {fileID: 11400000, guid: e1c0f9b387daa674984f9c19b94af331, type: 2}
   - {fileID: 11400000, guid: e846be562b5df0f4083906974faa8073, type: 2}

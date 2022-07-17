@@ -31,13 +31,8 @@ public class PlayerAnimationController : MonoBehaviour
         animator.Play(currentState.ToString());
         if(currentState == CharStates.Death) {
             player.pa.canAttack = false;
-            SystemsController.systemInstance.gsm.setStateGamePaused();
-            if(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Death") {
-                if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f) {
-                    player.psm.playerIsDead();
-                }
-            }
         }
+
     }
 
     public CharStates getState() {

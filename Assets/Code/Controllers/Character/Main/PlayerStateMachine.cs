@@ -57,8 +57,4 @@ public class PlayerStateMachine : MonoBehaviour
     public void playerDied() {
         state = CharStates.Death;
     }
-
-    public void playerIsDead() {
-        state = CharStates.Dead;
-    }
 }

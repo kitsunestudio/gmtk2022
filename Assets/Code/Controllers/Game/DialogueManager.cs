@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class DialogueManager : MonoBehaviour
     private List<GameObject> responseButtons;
     private int buttonClicked;
     private bool canTalk = false;
+    private bool firstDialogueDone = false;
+    public bool gameIsOver = false;
 
     void Awake()
     {
@@ -43,7 +46,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     private void displayNextSentenceOnAction(InputAction.CallbackContext obj) {{
-        if(canTalk) {
+        if(canTalk && responseButtons.Count == 0) {
             displayNextSentence();
         }
     }}
@@ -90,12 +93,27 @@ public class DialogueManager : MonoBehaviour
     public void displayNextSentence() {
         if(sentences.Count == 0) {
             endDialogue();
+            if(gameIsOver) {
+                Application.Quit();
+            }
             if(buttonClicked == 0) {
-                Player.playerInstance.pcm.canDoStuff = true;
-                SystemsController.systemInstance.bgc.loadGame();
-                buttonClicked = 100;
+                if(!firstDialogueDone) {
+                    Player.playerInstance.pcm.canDoStuff = true;
+                    SystemsController.systemInstance.bgc.loadGame();
+                    SystemsController.systemInstance.cc.startFollowing = true;
+                    buttonClicked = 100;
+                    firstDialogueDone = true;
+                } else {
+                    Player.playerInstance.reset();
+                    SystemsController.systemInstance.es.reset();
+                    SceneManager.LoadScene(1);
+                }
             } else if(buttonClicked == 1){
-                SystemsController.systemInstance.bgc.openMenu();
+                if(!firstDialogueDone) {
+                    SystemsController.systemInstance.bgc.openMenu();
+                } else {
+                    Application.Quit();
+                }
             } else if(buttonClicked == 2) {
                 SystemsController.systemInstance.bgc.quitGameButton();
             }
@@ -155,5 +173,6 @@ public class DialogueManager : MonoBehaviour
         foreach(GameObject button in responseButtons) {
             Destroy(button);
         }
+        responseButtons.Clear();
     }
 }

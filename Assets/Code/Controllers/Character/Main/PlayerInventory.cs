@@ -197,4 +197,10 @@ public class PlayerInventory : MonoBehaviour
             SystemsController.systemInstance.sc.playEffect("grab-die");
         }
     }
+
+    public void clearInventory() {
+        inventory.Clear();
+        selectedDie = null;
+        updateDieAmountText();
+    }
 }

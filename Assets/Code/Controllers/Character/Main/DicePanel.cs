@@ -20,6 +20,12 @@ public class DicePanel : MonoBehaviour
     public void setActive() {
         isShown = true;
         gameObject.GetComponent<Animator>().SetBool("showDicePanel", true);
+        Player.playerInstance.pa.canAttack = true;
+    }
+
+    public void hide() {
+        isShown = false;
+        gameObject.GetComponent<Animator>().SetBool("showDicePanel", false);
     }
 
     public bool getActive() {

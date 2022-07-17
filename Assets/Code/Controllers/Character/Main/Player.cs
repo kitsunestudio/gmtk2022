@@ -22,4 +22,19 @@ public class Player : MonoBehaviour
         playerTrans = transform;
         DontDestroyOnLoad(this.gameObject);
     }
+
+    public void reset() {
+        SystemsController.systemInstance.bgc.canOpen = true;
+        playerTrans.position = Vector3.zero;
+        pa.health = pa.maxHealth;
+        pa.healthBar.setCurrentValue(pa.health);
+        pi.clearInventory();
+        pi.dp.hide();
+        GameObject.FindGameObjectWithTag("BossHealth").GetComponent<Animator>().SetBool("showHealth", false);
+        GameObject.FindGameObjectWithTag("BossHealth").GetComponent<Animator>().SetBool("stayDisplay", false);
+        SystemsController.systemInstance.es.startGame = false;
+        SystemsController.systemInstance.es.reset();
+        SystemsController.systemInstance.es.startWave();
+
+    }
 }

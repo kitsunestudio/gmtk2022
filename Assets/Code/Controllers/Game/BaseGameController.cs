@@ -10,6 +10,7 @@ public class BaseGameController : MonoBehaviour
     private TopDownPlayerController controller;
     public GameObject inGameMenuPanel;
     public GameObject craftingMenu;
+    public bool canOpen = true;
     private void Awake() {
         controller = new TopDownPlayerController();
         inGameMenuPanel.SetActive(true);
@@ -32,7 +33,9 @@ public class BaseGameController : MonoBehaviour
     }
 
     private void OpenMenuAction(InputAction.CallbackContext obj) {{
-        openMenu();
+        if(canOpen) {
+            openMenu();
+        }
     }}
 
     private void OpenCrafting(InputAction.CallbackContext obj) {{

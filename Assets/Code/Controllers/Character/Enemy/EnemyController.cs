@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
                             aceAttack();
                         }
                         if(canSpawn) {
-                            spawnMinion();
+                            //spawnMinion();
                         }
                         //add stomper here?
                         //SystemsController.systemInstance.cc.cameraShake();
@@ -190,7 +190,7 @@ public class EnemyController : MonoBehaviour
     }
 
     private IEnumerator reloadShot() {
-        float timeToFade = animationString == "Ace_Walk" ? 0.6f : 1.5f;
+        float timeToFade = animationString == "Ace_Walk" ? 0.5f : 1.5f;
         float timeElapsed = 0f;
 
         while(timeElapsed < timeToFade) {

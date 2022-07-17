@@ -10,9 +10,10 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] spawnPoints;
     public GameObject enemyPrefab;
     public DefaultableText waveText;
+    public GameObject credits;
 
     private bool isSpawning;
-    private bool startGame;
+    public bool startGame;
 
     void Start() {
         waves = new Queue<EnemyWave>();
@@ -28,9 +29,17 @@ public class EnemySpawner : MonoBehaviour
             if(!isSpawning) {
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 if(enemies.Length == 0) {
-                    SystemsController.systemInstance.mc.crossFadeClip("shuffle");
-                    startGame = false;
-                    StartCoroutine(nextWave());
+                    if(currentWave.waveNumber <= 6) {
+                        SystemsController.systemInstance.mc.crossFadeClip("shuffle");
+                        startGame = false;
+                        StartCoroutine(nextWave());
+                    } else {
+                        credits.SetActive(true);
+                        SystemsController.systemInstance.bgc.canOpen = false;
+                        Player.playerInstance.playerTrans.position = new  Vector3(101, 0, 0);
+                        Player.playerInstance.pi.dp.hide();
+                        SystemsController.systemInstance.dm.gameIsOver = true;
+                    }
                 }
             }
         }
@@ -102,7 +111,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         if(possibleIndexes.Count == 0) {
-            Debug.Log("has stuff");
             return null;
         }
 
@@ -121,5 +129,13 @@ public class EnemySpawner : MonoBehaviour
         findSpawnPoints();
         StopAllCoroutines();
         StartCoroutine(spawnEnemies());
+    }
+
+    public void reset() {
+
+        waves.Clear();
+        foreach(EnemyWave wave in allWaves.waves) {
+            waves.Enqueue(wave);
+        }
     }
 }

@@ -10,7 +10,7 @@ public class PlayerAttack : MonoBehaviour
     public List<DieMaterials> particleLists;
 
     public ManualSlider healthBar;
-    private int health = 20;
+    public int health = 20;
     public int maxHealth = 20;
 
     public bool canAttack;
@@ -20,15 +20,18 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void takeDamage(int damage) {
-        if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
-            health -= damage;
-            healthBar.setCurrentValue(health);
-            if(health <= 0) {
-                Player.playerInstance.psm.playerDied();
-                Player.playerInstance.playerTrans.position = new Vector3(-99, 0, 0);
-                Player.playerInstance.pi.dp.GetComponent<Animator>().SetBool("showDicePanel", false);
-            } else {
-                SystemsController.systemInstance.cc.cameraShake();
+        if(health > 0) {
+            if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
+                health -= damage;
+                healthBar.setCurrentValue(health);
+                if(health <= 0) {
+                    Player.playerInstance.psm.playerDied();
+                    SystemsController.systemInstance.bgc.canOpen = false;
+                    Player.playerInstance.playerTrans.position = new Vector3(-99, 0, 0);
+                    Player.playerInstance.pi.dp.GetComponent<Animator>().SetBool("showDicePanel", false);
+                } else {
+                    SystemsController.systemInstance.cc.cameraShake();
+                }
             }
         }
     }

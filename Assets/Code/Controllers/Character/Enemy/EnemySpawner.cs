@@ -11,13 +11,13 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public DefaultableText waveText;
     public GameObject credits;
-
-    private bool isSpawning;
     public bool startGame;
+    public bool canSpawn = true;
 
+    private float spawnTimer;
+    public float spawnTimerMax;
     void Start() {
         waves = new Queue<EnemyWave>();
-        isSpawning = false;
         startGame = false;
         foreach(EnemyWave wave in allWaves.waves) {
             waves.Enqueue(wave);
@@ -26,20 +26,28 @@ public class EnemySpawner : MonoBehaviour
 
     void Update() {
         if(startGame) {
-            if(!isSpawning) {
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                if(enemies.Length == 0) {
-                    if(currentWave.waveNumber <= 6) {
-                        SystemsController.systemInstance.mc.crossFadeClip("shuffle");
-                        startGame = false;
-                        StartCoroutine(nextWave());
-                    } else {
-                        credits.SetActive(true);
-                        SystemsController.systemInstance.bgc.canOpen = false;
-                        Player.playerInstance.playerTrans.position = new  Vector3(101, 0, 0);
-                        Player.playerInstance.pi.dp.hide();
-                        SystemsController.systemInstance.dm.gameIsOver = true;
+            if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
+                if(spawnTimer > 0) {
+                    spawnTimer -= Time.deltaTime;
+                } else {
+                    spawnTimer = spawnTimerMax;
+                    if(getEnemiesLeft() > 0) {
+                        GameObject tempEnemy = Instantiate(enemyPrefab, calculateSpawnPoint(), transform.rotation);
+                        tempEnemy.GetComponent<EnemyController>().loadEnemy(calculateEnemy());
                     }
+                }
+            }
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if(enemies.Length == 0 && getEnemiesLeft() == 0) {
+                if(currentWave.waveNumber == 7) {
+                    credits.SetActive(true);
+                    SystemsController.systemInstance.bgc.canOpen = false;
+                    Player.playerInstance.playerTrans.position = new  Vector3(101, 0, 0);
+                    Player.playerInstance.pi.dp.hide();
+                    SystemsController.systemInstance.dm.gameIsOver = true;
+                } else {
+                    startGame = false;
+                    StartCoroutine(nextWave());
                 }
             }
         }
@@ -55,34 +63,10 @@ public class EnemySpawner : MonoBehaviour
             SystemsController.systemInstance.mc.crossFadeClip("craps");
         }
         foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
-            //entry.amount = entry.maxAmount;
-            entry.amount = 1;
+            entry.amount = entry.maxAmount;
+            //entry.amount = 1;
         }
         startSpawningWave();
-    }
-
-    private IEnumerator spawnEnemies() {
-        if(isSpawning) {
-            float timeToFade = 2f;
-            float timeElapsed = 0f;
-            while(timeElapsed < timeToFade) {
-                
-                timeElapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            Enemy myEnemy = calculateEnemy();
-
-            if(myEnemy != null) {
-                GameObject tempEnemy = Instantiate(enemyPrefab, calculateSpawnPoint(), transform.rotation);
-                tempEnemy.GetComponent<EnemyController>().loadEnemy(myEnemy);
-                StartCoroutine(spawnEnemies());
-            } else {
-                isSpawning = false;
-                StopAllCoroutines();
-                //StartCoroutine(nextWave());
-            }
-        }
     }
 
     private IEnumerator nextWave() {
@@ -125,10 +109,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void startSpawningWave() {
-        isSpawning = true;
         findSpawnPoints();
-        StopAllCoroutines();
-        StartCoroutine(spawnEnemies());
     }
 
     public void reset() {
@@ -137,5 +118,14 @@ public class EnemySpawner : MonoBehaviour
         foreach(EnemyWave wave in allWaves.waves) {
             waves.Enqueue(wave);
         }
+    }
+
+    private int getEnemiesLeft() {
+        int amount = 0;
+        foreach(EnemyWaveEntry entry in currentWave.waveEntries) {
+            amount += entry.amount;
+        }
+
+        return amount;
     }
 }

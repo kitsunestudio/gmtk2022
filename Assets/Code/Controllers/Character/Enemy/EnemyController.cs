@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
                             aceAttack();
                         }
                         if(canSpawn) {
-                            //spawnMinion();
+                            spawnMinion();
                         }
                         //add stomper here?
                         //SystemsController.systemInstance.cc.cameraShake();
@@ -82,6 +82,9 @@ public class EnemyController : MonoBehaviour
                 Destroy(gameObject, 7f);
                 SystemsController.systemInstance.gsm.setStateGamePaused();
                 SystemsController.systemInstance.cc.updateTarget(transform);
+                foreach(GameObject en in GameObject.FindGameObjectsWithTag("Enemy")) {
+                    Destroy(en);
+                }
             }
         }
     }
@@ -190,7 +193,7 @@ public class EnemyController : MonoBehaviour
     }
 
     private IEnumerator reloadShot() {
-        float timeToFade = animationString == "Ace_Walk" ? 0.5f : 1.5f;
+        float timeToFade = animationString == "Ace_Walk" ? 0.6f : 1.5f;
         float timeElapsed = 0f;
 
         while(timeElapsed < timeToFade) {
@@ -214,10 +217,18 @@ public class EnemyController : MonoBehaviour
     }
 
     private void spawnMinion() {
-        GameObject minion = Instantiate(enemyPrefab, transform.position, transform.rotation);
+        GameObject minion = Instantiate(enemyPrefab, transform.position + calculateSpawnMinionPos(), transform.rotation);
         minion.GetComponent<EnemyController>().loadEnemy(spawnAbles[Random.Range(0,2)]);
         canSpawn = false;
 
         StartCoroutine(spawnTimer());
+    }
+
+    private Vector3 calculateSpawnMinionPos() {
+        if(Player.playerInstance.playerTrans.position.x > transform.position.x) {
+            return new Vector3(2, 0, 0);
+        } else {
+            return new Vector3(-2, 0, 0);
+        }
     }
 }

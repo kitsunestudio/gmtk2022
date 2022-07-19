@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   enemyName: Ace Of Spades
-  maxHealth: 250
+  maxHealth: 200
   gameSprite: {fileID: 919765705747919964, guid: 8a1c2d7eafe2d5646915de98e581c79d, type: 3}
   speed: 0.5
   attackDistance: 12

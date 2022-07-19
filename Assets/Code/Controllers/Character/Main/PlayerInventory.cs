@@ -179,6 +179,7 @@ public class PlayerInventory : MonoBehaviour
         if(crafted != null) {
             addItemToInventory(crafted);
             SystemsController.systemInstance.sc.playEffect("grab-die");
+            Player.playerInstance.pa.heal();
         }
     }
 
@@ -195,6 +196,7 @@ public class PlayerInventory : MonoBehaviour
         if(crafted != null) {
             addItemToInventory(crafted);
             SystemsController.systemInstance.sc.playEffect("grab-die");
+            Player.playerInstance.pa.heal();
         }
     }
 

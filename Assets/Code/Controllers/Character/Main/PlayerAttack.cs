@@ -19,6 +19,11 @@ public class PlayerAttack : MonoBehaviour
         return health;
     }
 
+    public void heal(int amount = 1) {
+        health += amount;
+        healthBar.setCurrentValue(health);
+    }
+
     public void takeDamage(int damage) {
         if(health > 0) {
             if(SystemsController.systemInstance.gsm.getState() != GameStates.GamePaused) {
@@ -37,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void rollDie(Item die, Vector2 target) {
-        if(canAttack) {
+        if(SystemsController.systemInstance.gsm.getState() == GameStates.InGame) {
             if(Player.playerInstance.pi.dieAvailable()) {
                 GameObject bullet = Instantiate(dieBullet, calculateSpawnPosition(target), transform.rotation, transform);
                 DieBullet bulletScript = bullet.GetComponent<DieBullet>();

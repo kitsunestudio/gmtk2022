@@ -20,5 +20,6 @@ MonoBehaviour:
   - I'm ready!
   - I'm finished...
   responses:
-  - Let's do this!
+  - Let's do this! Don't forget, when you combine dice into a d20 you regain some
+    health.
   - Are you sure?

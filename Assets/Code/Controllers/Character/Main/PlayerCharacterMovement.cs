@@ -13,7 +13,6 @@ public class PlayerCharacterMovement : MonoBehaviour
     public float moveSpeed = 5f;
     private Vector2 mousePos;
     public Vector2 MousePos { get; set;}
-    public bool canDoStuff { get; set; }
 
     void Awake() {
       topDownController = new TopDownPlayerController();
@@ -22,7 +21,6 @@ public class PlayerCharacterMovement : MonoBehaviour
 
     void Start() {
       player = Player.playerInstance;
-      canDoStuff = false;
     }
 
     private void OnEnable() {
@@ -59,9 +57,11 @@ public class PlayerCharacterMovement : MonoBehaviour
     }
 
     private void onAttack(InputAction.CallbackContext obj) {{
-      if(canDoStuff) {
+      if(SystemsController.systemInstance.gsm.getState() == GameStates.InGame) {
         MousePos = SystemsController.systemInstance.cc.mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Player.playerInstance.pa.rollDie(Player.playerInstance.pi.selectedDie.MyItem, MousePos);
+        if(Player.playerInstance.pi.selectedDie != null) {
+          Player.playerInstance.pa.rollDie(Player.playerInstance.pi.selectedDie.MyItem, MousePos);
+        }
       }
     }}
 

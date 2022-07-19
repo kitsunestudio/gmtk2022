@@ -98,7 +98,6 @@ public class DialogueManager : MonoBehaviour
             }
             if(buttonClicked == 0) {
                 if(!firstDialogueDone) {
-                    Player.playerInstance.pcm.canDoStuff = true;
                     SystemsController.systemInstance.bgc.loadGame();
                     SystemsController.systemInstance.cc.startFollowing = true;
                     buttonClicked = 100;
@@ -135,8 +134,8 @@ public class DialogueManager : MonoBehaviour
 
     private void endDialogue() {
         anim.SetBool("isShow", false);
-        sc.gsm.setStateInGame();
         canTalk = false;
+        SystemsController.systemInstance.gsm.setStateInGame();
     }
 
     private IEnumerator writeSentence(string sentence) {

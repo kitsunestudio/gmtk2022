@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myEnemy: {fileID: 0}
   amount: 15
-  maxAmount: 15
+  maxAmount: 10

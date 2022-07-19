@@ -35,6 +35,7 @@ public class BaseGameController : MonoBehaviour
     private void OpenMenuAction(InputAction.CallbackContext obj) {{
         if(canOpen) {
             openMenu();
+            
         }
     }}
 
@@ -55,14 +56,12 @@ public class BaseGameController : MonoBehaviour
     }
 
     public void openMenu() {
-        if(systems.gsm.getState() == GameStates.InGame || systems.gsm.getState() == GameStates.GamePaused) {
-            if(inGameMenuPanel.activeSelf) {
-                inGameMenuPanel.SetActive(false);
-                systems.gsm.setStateInGame();
-            } else {
-                inGameMenuPanel.SetActive(true);
-                systems.gsm.setStateGamePaused();
-            }
+        if(inGameMenuPanel.activeSelf) {
+            inGameMenuPanel.SetActive(false);
+            systems.gsm.setStateInGame();
+        } else {
+            inGameMenuPanel.SetActive(true);
+            systems.gsm.setStateGamePaused();
         }
     }
 

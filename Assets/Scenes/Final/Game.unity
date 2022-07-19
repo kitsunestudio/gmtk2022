@@ -382,6 +382,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DieSpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 884492339539931810, guid: 3ea14e2a31f65c44ba94b1b723769c02, type: 3}
+      propertyPath: m_TagString
+      value: DieSpawner
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ea14e2a31f65c44ba94b1b723769c02, type: 3}
 --- !u!1001 &546554919
@@ -669,6 +673,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 884492339539931810, guid: 3ea14e2a31f65c44ba94b1b723769c02, type: 3}
       propertyPath: m_Name
+      value: DieSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 884492339539931810, guid: 3ea14e2a31f65c44ba94b1b723769c02, type: 3}
+      propertyPath: m_TagString
       value: DieSpawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []

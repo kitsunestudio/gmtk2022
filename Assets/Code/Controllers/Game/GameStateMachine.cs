@@ -7,7 +7,7 @@ public class GameStateMachine : MonoBehaviour
     private GameStates state;
 
     void Awake() {
-        state = GameStates.InGame;
+        setStateMainMenu();
     }
 
     public GameStates getState() {
